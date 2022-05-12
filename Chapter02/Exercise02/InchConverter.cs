@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Exersice02 {
-    public static class FeetConverter {
+    public static class InchConverter {
 
-        private const double ratio = 0.3048; //定数ratioを定義
+        private const double ratio = 0.0254; //定数ratioを定義
         //public static readonly double ratio = 0.3048; ←外部からもアクセスさせたい場合
 
         //メートルからフィートを求める（静的メソッド）
@@ -16,8 +16,8 @@ namespace Exersice02 {
         }
 
         //フィートからメートルを求める（静的メソッド）
-        public static double ToMeter(double feet) {
-            return feet * ratio;
+        public static double ToMeter(double inch) {
+            return inch * ratio;
         }
     }
 }
