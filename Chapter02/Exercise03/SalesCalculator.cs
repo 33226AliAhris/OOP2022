@@ -38,10 +38,10 @@ namespace Exercise03 {
                 if (dict.ContainsKey(sale.ProductCategory))
                     dict[sale.ProductCategory] += sale.Amount;
 
-                else
-
+                else {
                     dict[sale.ProductCategory] = sale.Amount;
-               }
+                }
+            }
 
                return dict;
             }
