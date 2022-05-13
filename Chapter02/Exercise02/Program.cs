@@ -23,7 +23,7 @@ namespace Exersice02 {
             for (int meter = start; meter <= stop; meter++) {
                 double inch = InchConverter.FromMeter(meter);
                 Console.WriteLine("{0}m = {1:0.0000}in", meter, inch);
-
+                 
             }
         }
         //インチからメートルへの対応表を出力
