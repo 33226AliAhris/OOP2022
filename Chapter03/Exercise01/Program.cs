@@ -24,7 +24,7 @@ namespace Exercise01 {
         }
 
         private static void Exersice1_2(List<int> numbers) {
-            throw new NotImplementedException();
+            numbers.ForEach(n => Console.WriteLine(n / 2.0));
         }
     }
 }
