@@ -39,6 +39,9 @@ namespace Exercise02 {
             Exercise2_5(ymCollection);
             Console.WriteLine("------------------");
 
+            //4.2.6
+            Exercise2_6(ymCollection);
+            Console.WriteLine("------------------");
         }
 
         //4.2.3
@@ -51,7 +54,6 @@ namespace Exercise02 {
 
                 }
             }
-
             return null;
         }
 
@@ -71,15 +73,19 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_5(YearMonth[] ymCollection) {
-            foreach (var ym in ymCollection) {
-                var newList = new YearMonth[] {
-                    ym.AddOneMonth(),
-                    
-                };
-                foreach (var yms in newList) {
-                    Console.WriteLine(yms);
-                }
+            var array = ymCollection.Select(ym => ym.AddOneMonth()).ToArray();
+            foreach (var ym in array) {
+                Console.WriteLine(ym);
+
             }
         }
+
+        private static void Exercise2_6(YearMonth[] ymCollection) {
+            foreach (var ym in ymCollection.OrderByDescending(ym => ym.Year)) {
+                Console.WriteLine(ym);
+            }
+            
+        }
+
     }
 }
