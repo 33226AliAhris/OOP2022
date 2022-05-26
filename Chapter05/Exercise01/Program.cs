@@ -9,9 +9,9 @@ namespace Exercise01 {
         static void Main(string[] args) {
 
             Console.Write("文字列１を入力：");
-            string input1 = Console.ReadLine();
+            var input1 = Console.ReadLine();
             Console.Write("文字列２を入力：");
-            string input2 = Console.ReadLine();
+            var input2 = Console.ReadLine();
 
             if(String.Compare(input1,input2,ignoreCase:true) == 0) {
                 Console.WriteLine("等しい");
