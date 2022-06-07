@@ -22,8 +22,13 @@ namespace Sample0603 {
                     ans.Value = Sum1.Value + Sum2.Value;
                     break;
 
-                case "-":
-                    ans.Value = Sum1.Value - Sum2.Value;
+                case "-":                   
+                    if(Sum2.Value > Sum1.Value) {
+                        ans.Value = Sum2.Value - Sum1.Value;
+                    }
+                    else {
+                        ans.Value = Sum1.Value - Sum2.Value;
+                    }
                     break;
 
                 case "/":
