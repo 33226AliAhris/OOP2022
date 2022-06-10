@@ -14,20 +14,8 @@ namespace Sample0607 {
             InitializeComponent();
         }
 
-        private void tbCalc_Click(object sender, EventArgs e) {
-            if (ndNum2.Value == 0) {
-                MessageBox.Show(
-                    "0で割り算できません",
-                    "エラー",
-                    MessageBoxButtons.RetryCancel,
-                    MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button2,
-                    MessageBoxOptions.DefaultDesktopOnly);
-            }
-            else {
-                ndAns.Value = ndNum1.Value / ndNum2.Value;
-                ndMod.Value = ndNum1.Value % ndNum2.Value;
-            }
+        private void btRandom_Click(object sender, EventArgs e) {
+            Number.Value = new Random().Next(minValue:(int)nudMin.Value, (int)nudMax.Value + 1);
         }
     }
 }
