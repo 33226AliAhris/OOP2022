@@ -39,7 +39,6 @@ namespace AddressBook {
 
             listPerson.Add(newPerson);
 
-
         }
 
         //チェックボックスにセットされている値をリストとして取り出す
@@ -66,6 +65,7 @@ namespace AddressBook {
         }
 
         private void dgvPersons_Click(object sender, EventArgs e) {
+            if (dgvPersons.CurrentRow == null) return;
             var index = dgvPersons.CurrentRow.Index;
 
             tbName.Text = listPerson[index].Name;
@@ -74,7 +74,7 @@ namespace AddressBook {
             tbCompany.Text = listPerson[index].Company;
             pbPicture.Image = listPerson[index].Picture;
 
-            groupCheckBoxAllClear();
+            groupCheckBoxAllClear(); //グループチェックボックスを一旦初期化
 
             foreach (var group in listPerson[index].listGroup) {
                 switch (group) {
@@ -102,6 +102,32 @@ namespace AddressBook {
         //グループのチェックボックスをオールクリア
         private void groupCheckBoxAllClear() {
             cbFamily.Checked = cbFriend.Checked = cbWork.Checked = cbOther.Checked = false;
+        }
+
+        //更新ボタンが押された時の処理
+        private void btUpdate_Click(object sender, EventArgs e) {
+            var index = dgvPersons.CurrentRow.Index;
+
+            listPerson[index].Name = tbName.Text;
+            listPerson[index].MailAddress = tbMailAddress.Text;
+            listPerson[index].Address = tbAddress.Text;
+            listPerson[index].Company = tbCompany.Text;
+            listPerson[index].Picture = pbPicture.Image;
+            listPerson[index].listGroup = GetCheckBoxGroup();
+
+            dgvPersons.Refresh(); //データグリッドビュー更新
+        }
+
+        private void btDelete_Click(object sender, EventArgs e) {
+            MessageBox.Show("この行を削除しますか？","削除");
+            listPerson.RemoveAt(dgvPersons.CurrentRow.Index);
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            btDelete.Enabled = false;
+            btAddPerson.Enabled = false;
+            btUpdate.Enabled = false;
         }
     }
 }
