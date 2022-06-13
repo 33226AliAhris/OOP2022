@@ -23,7 +23,6 @@ namespace AddressBook {
 
                 pbPicture.Image = Image.FromFile(ofdFileOpenDialog.FileName);
 
-
             }
 
         }
@@ -75,10 +74,7 @@ namespace AddressBook {
             tbCompany.Text = listPerson[index].Company;
             pbPicture.Image = listPerson[index].Picture;
 
-            cbFamily.Checked = false;
-            cbFriend.Checked = false;
-            cbWork.Checked = false;
-            cbOther.Checked = false;
+            groupCheckBoxAllClear();
 
             foreach (var group in listPerson[index].listGroup) {
                 switch (group) {
@@ -97,10 +93,15 @@ namespace AddressBook {
                     case Person.GroupType.その他:
                         cbOther.Checked = true;
                         break;
+
                     default:
                         break;
                 }
             }  
+        }
+        //グループのチェックボックスをオールクリア
+        private void groupCheckBoxAllClear() {
+            cbFamily.Checked = cbFriend.Checked = cbWork.Checked = cbOther.Checked = false;
         }
     }
 }
