@@ -11,12 +11,12 @@ namespace Test01 {
 
         }
 
-        //メソッドの概要： 
+        //メソッドの概要： 科目別点数を求める
         private static IEnumerable<Student> ReadScore(string filePath) {
             var scores = new List<Student>();
             var lines = File.ReadAllLines(filePath);
             foreach (string line in lines) {
-                string[] items = line.Split(',');
+                var items = line.Split(',');
                 var score = new Student {
                     Name = items[0],
                     Subject = items[1],
@@ -28,16 +28,16 @@ namespace Test01 {
 
         }
 
-        //メソッドの概要： 
+        //メソッドの概要： スコアデータを読み込み、Studentオブジェクトのリストを返す
         public IDictionary<string, int> GetPerStudentScore() {
             var dict = new Dictionary<string, int>();
-            foreach (var sale in _score) {
-                if (dict.ContainsKey(sale.Subject))
-                    dict[sale.Subject] += sale.Score;
+            foreach (var student in _score) {
+                if (dict.ContainsKey(student.Subject))
+                    dict[student.Subject] += student.Score;
 
                 else
 
-                    dict[sale.Subject] = sale.Score;
+                    dict[student.Subject] = student.Score;
             }
 
             return dict;
