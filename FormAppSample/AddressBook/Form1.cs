@@ -36,9 +36,16 @@ namespace AddressBook {
                 Picture = pbPicture.Image,
                 listGroup = GetCheckBoxGroup(),
             };
-
-            listPerson.Add(newPerson);
-
+ 
+            if (String.IsNullOrEmpty(tbName.Text) && listPerson.Count() == 0) {
+                MessageBox.Show("空欄です","エラー");
+                btDelete.Enabled = true;
+                btUpdate.Enabled = true;
+            }
+            else {
+                listPerson.Add(newPerson);
+                dgvPersons.Rows[dgvPersons.RowCount - 1].Selected = true;
+            }
         }
 
         //チェックボックスにセットされている値をリストとして取り出す
@@ -122,11 +129,17 @@ namespace AddressBook {
             MessageBox.Show("この行を削除しますか？","削除");
             listPerson.RemoveAt(dgvPersons.CurrentRow.Index);
 
+            dgvPersons.Rows[dgvPersons.RowCount - 1].Selected = true;
+
+            if(listPerson.Count() == 0) {
+                btDelete.Enabled = false;
+                btUpdate.Enabled = false;
+            }
+
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
-            btDelete.Enabled = false;
-            btAddPerson.Enabled = false;
+        private void Form1_Load_1(object sender, EventArgs e) {
+            ;
             btUpdate.Enabled = false;
         }
     }

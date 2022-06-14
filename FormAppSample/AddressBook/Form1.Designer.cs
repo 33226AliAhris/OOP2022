@@ -58,7 +58,7 @@ namespace AddressBook
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(106, 26);
+            this.label1.Location = new System.Drawing.Point(94, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 27);
             this.label1.TabIndex = 0;
@@ -68,7 +68,7 @@ namespace AddressBook
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(25, 63);
+            this.label2.Location = new System.Drawing.Point(4, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(156, 27);
             this.label2.TabIndex = 0;
@@ -78,7 +78,7 @@ namespace AddressBook
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(106, 108);
+            this.label3.Location = new System.Drawing.Point(94, 108);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 27);
             this.label3.TabIndex = 0;
@@ -88,7 +88,7 @@ namespace AddressBook
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(106, 191);
+            this.label4.Location = new System.Drawing.Point(94, 191);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 27);
             this.label4.TabIndex = 0;
@@ -98,7 +98,7 @@ namespace AddressBook
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(75, 234);
+            this.label5.Location = new System.Drawing.Point(63, 234);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 27);
             this.label5.TabIndex = 0;
@@ -286,6 +286,7 @@ namespace AddressBook
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "住所録アプリ";
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.ResumeLayout(false);
