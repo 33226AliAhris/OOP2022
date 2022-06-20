@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
+    [Serializable]
     public class Person
     {
         [System.ComponentModel.DisplayName("名前")]
