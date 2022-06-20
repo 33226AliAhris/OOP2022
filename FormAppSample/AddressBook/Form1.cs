@@ -24,27 +24,37 @@ namespace AddressBook {
                 pbPicture.Image = Image.FromFile(ofdFileOpenDialog.FileName);
 
             }
-
         }
 
         private void btAddPerson_Click(object sender, EventArgs e) {
+            //氏名が未入力なら登録しない
+            if (String.IsNullOrWhiteSpace(tbName.Text)){
+                MessageBox.Show("氏名が入力されていません","エラー");
+                return;
+            }
+
             Person newPerson = new Person {
                 Name = tbName.Text,
                 MailAddress = tbMailAddress.Text,
                 Address = tbAddress.Text,
-                Company = tbCompany.Text,
+                Company = cbCompany.Text,
                 Picture = pbPicture.Image,
                 listGroup = GetCheckBoxGroup(),
             };
- 
-            if (String.IsNullOrEmpty(tbName.Text) && listPerson.Count() == 0) {
-                MessageBox.Show("空欄です","エラー");
+
+            listPerson.Add(newPerson);
+            dgvPersons.Rows[dgvPersons.RowCount - 1].Selected = true;
+
+            if (listPerson.Count() > 0) {
                 btDelete.Enabled = true;
                 btUpdate.Enabled = true;
             }
-            else {
-                listPerson.Add(newPerson);
-                dgvPersons.Rows[dgvPersons.RowCount - 1].Selected = true;
+
+            //コンボボックスに会社名を登録する（重複なし）
+            if (!cbCompany.Items.Contains(cbCompany.Text)) {
+
+                //まだ登録されていなければ登録処理
+                cbCompany.Items.Add(cbCompany.Text);
             }
         }
 
@@ -78,7 +88,7 @@ namespace AddressBook {
             tbName.Text = listPerson[index].Name;
             tbMailAddress.Text = listPerson[index].MailAddress;
             tbAddress.Text = listPerson[index].Address;
-            tbCompany.Text = listPerson[index].Company;
+            cbCompany.Text = listPerson[index].Company;
             pbPicture.Image = listPerson[index].Picture;
 
             groupCheckBoxAllClear(); //グループチェックボックスを一旦初期化
@@ -118,7 +128,7 @@ namespace AddressBook {
             listPerson[index].Name = tbName.Text;
             listPerson[index].MailAddress = tbMailAddress.Text;
             listPerson[index].Address = tbAddress.Text;
-            listPerson[index].Company = tbCompany.Text;
+            listPerson[index].Company = cbCompany.Text;
             listPerson[index].Picture = pbPicture.Image;
             listPerson[index].listGroup = GetCheckBoxGroup();
 
@@ -131,16 +141,15 @@ namespace AddressBook {
 
             dgvPersons.Rows[dgvPersons.RowCount - 1].Selected = true;
 
-            if(listPerson.Count() == 0) {
-                btDelete.Enabled = false;
-                btUpdate.Enabled = false;
+            if(listPerson.Count() > 0) {
+                btDelete.Enabled = true;
             }
-
         }
 
         private void Form1_Load_1(object sender, EventArgs e) {
-            ;
             btUpdate.Enabled = false;
+            btDelete.Enabled = false;
+
         }
     }
 }
