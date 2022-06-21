@@ -40,6 +40,7 @@ namespace AddressBook {
                 Address = tbAddress.Text,
                 Company = cbCompany.Text,
                 Picture = pbPicture.Image,
+                Registration = dtpRegistDate.Value,
                 listGroup = GetCheckBoxGroup(),
             };
 
@@ -91,6 +92,7 @@ namespace AddressBook {
             tbAddress.Text = listPerson[index].Address;
             cbCompany.Text = listPerson[index].Company;
             pbPicture.Image = listPerson[index].Picture;
+            dtpRegistDate.Value = listPerson[index].Registration.Year > 1900 ? listPerson[index].Registration : DateTime.Today; ;
 
             groupCheckBoxAllClear(); //グループチェックボックスを一旦初期化
 
@@ -126,12 +128,13 @@ namespace AddressBook {
         //更新ボタンが押された時の処理
         private void btUpdate_Click(object sender, EventArgs e) {
             var index = dgvPersons.CurrentRow.Index;
-
+        
             listPerson[index].Name = tbName.Text;
             listPerson[index].MailAddress = tbMailAddress.Text;
             listPerson[index].Address = tbAddress.Text;
             listPerson[index].Company = cbCompany.Text;
             listPerson[index].Picture = pbPicture.Image;
+            listPerson[index].Registration = dtpRegistDate.Value;
             listPerson[index].listGroup = GetCheckBoxGroup();
 
             dgvPersons.Refresh(); //データグリッドビュー更新
@@ -153,7 +156,6 @@ namespace AddressBook {
 
         private void Form1_Load_1(object sender, EventArgs e) {
             JudgeMask();//マスク処理呼び出し
-
         }
 
         //保存ボタンのイベントハンドラ
@@ -174,6 +176,7 @@ namespace AddressBook {
         }
 
         private void btOpen_Click(object sender, EventArgs e) {
+            
             if (ofdFileOpenDialog.ShowDialog() == DialogResult.OK) {
                 try {
                     //バイナリ形式で逆シリアル化
@@ -191,9 +194,10 @@ namespace AddressBook {
                 catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }
+                cbCompany.Items.Clear();
 
                 foreach (var item in listPerson.Select(p => p.Company)) {
-                    setCbCompany(item);//存在する会社を登録
+                    setCbCompany(item);//存在する会社を登録                   
                 }
 
                 JudgeMask();//マスク処理呼び出し
