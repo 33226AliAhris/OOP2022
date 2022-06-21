@@ -41,6 +41,8 @@ namespace AddressBook {
                 Company = cbCompany.Text,
                 Picture = pbPicture.Image,
                 Registration = dtpRegistDate.Value,
+                TelNumber = tbTelNumber.Text,
+                //KindNumber = GetRadioButton(),
                 listGroup = GetCheckBoxGroup(),
             };
 
@@ -59,6 +61,14 @@ namespace AddressBook {
                 cbCompany.Items.Add(company);
             }
         }
+
+        //private Person.KindNumberType GetRadioButton(){
+           // var KindNumber = new Person.KindNumberType();
+           // if (rbHome.Checked) {
+           //     KindNumber(Person.KindNumberType.携帯);
+           // }
+            //return null;
+       // }
 
         //チェックボックスにセットされている値をリストとして取り出す
         private List<Person.GroupType> GetCheckBoxGroup() {
@@ -92,8 +102,9 @@ namespace AddressBook {
             tbAddress.Text = listPerson[index].Address;
             cbCompany.Text = listPerson[index].Company;
             pbPicture.Image = listPerson[index].Picture;
-            dtpRegistDate.Value = listPerson[index].Registration.Year > 1900 ? listPerson[index].Registration : DateTime.Today; ;
-
+            dtpRegistDate.Value = listPerson[index].Registration.Year > 1900 ? listPerson[index].Registration : DateTime.Today;
+            tbTelNumber.Text = listPerson[index].TelNumber;
+            
             groupCheckBoxAllClear(); //グループチェックボックスを一旦初期化
 
             foreach (var group in listPerson[index].listGroup) {
@@ -116,6 +127,7 @@ namespace AddressBook {
 
                     default:
                         break;
+                
                 }
             }  
         }
@@ -135,6 +147,7 @@ namespace AddressBook {
             listPerson[index].Company = cbCompany.Text;
             listPerson[index].Picture = pbPicture.Image;
             listPerson[index].Registration = dtpRegistDate.Value;
+            listPerson[index].TelNumber = tbTelNumber.Text;
             listPerson[index].listGroup = GetCheckBoxGroup();
 
             dgvPersons.Refresh(); //データグリッドビュー更新
