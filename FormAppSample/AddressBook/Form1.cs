@@ -46,11 +46,7 @@ namespace AddressBook {
             listPerson.Add(newPerson);
             dgvPersons.Rows[dgvPersons.RowCount - 1].Selected = true;
 
-            if (listPerson.Count() > 0) {
-                btDelete.Enabled = true;
-                btUpdate.Enabled = true;
-            }
-
+            JudgeMask();
             setCbCompany(cbCompany.Text);
         }
 
@@ -59,7 +55,7 @@ namespace AddressBook {
             if (!cbCompany.Items.Contains(company)) {
 
                 //まだ登録されていなければ登録処理
-                cbCompany.Items.Add(cbCompany.Text);
+                cbCompany.Items.Add(company);
             }
         }
 
@@ -121,6 +117,7 @@ namespace AddressBook {
                 }
             }  
         }
+
         //グループのチェックボックスをオールクリア
         private void groupCheckBoxAllClear() {
             cbFamily.Checked = cbFriend.Checked = cbWork.Checked = cbOther.Checked = false;
@@ -145,15 +142,17 @@ namespace AddressBook {
             listPerson.RemoveAt(dgvPersons.CurrentRow.Index);
 
             dgvPersons.Rows[dgvPersons.RowCount - 1].Selected = true;
+            JudgeMask(); //マスク処理呼び出し
+        }
 
-            if(listPerson.Count() > 0) {
-                btDelete.Enabled = true;
-            }
+        //更新・削除ボタンのマスク処理行う（マスク判定含む）
+        private void JudgeMask() {
+            btDelete.Enabled = btUpdate.Enabled = listPerson.Count() > 0 ? true : false;
+
         }
 
         private void Form1_Load_1(object sender, EventArgs e) {
-            btUpdate.Enabled = false;
-            btDelete.Enabled = false;
+            JudgeMask();//マスク処理呼び出し
 
         }
 
@@ -196,6 +195,8 @@ namespace AddressBook {
                 foreach (var item in listPerson.Select(p => p.Company)) {
                     setCbCompany(item);//存在する会社を登録
                 }
+
+                JudgeMask();//マスク処理呼び出し
             }          
         }
     }
