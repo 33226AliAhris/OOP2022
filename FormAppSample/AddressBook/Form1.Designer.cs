@@ -56,13 +56,13 @@ namespace AddressBook
             this.dtpRegistDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbHome = new System.Windows.Forms.RadioButton();
+            this.gbKindNumber = new System.Windows.Forms.GroupBox();
             this.rbMobile = new System.Windows.Forms.RadioButton();
+            this.rbHome = new System.Windows.Forms.RadioButton();
             this.tbTelNumber = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbKindNumber.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -320,16 +320,26 @@ namespace AddressBook
             this.label7.TabIndex = 0;
             this.label7.Text = "電話番号";
             // 
-            // groupBox1
+            // gbKindNumber
             // 
-            this.groupBox1.Controls.Add(this.rbMobile);
-            this.groupBox1.Controls.Add(this.rbHome);
-            this.groupBox1.Location = new System.Drawing.Point(178, 268);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(129, 52);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "種別";
+            this.gbKindNumber.Controls.Add(this.rbMobile);
+            this.gbKindNumber.Controls.Add(this.rbHome);
+            this.gbKindNumber.Location = new System.Drawing.Point(178, 268);
+            this.gbKindNumber.Name = "gbKindNumber";
+            this.gbKindNumber.Size = new System.Drawing.Size(129, 52);
+            this.gbKindNumber.TabIndex = 9;
+            this.gbKindNumber.TabStop = false;
+            this.gbKindNumber.Text = "種別";
+            // 
+            // rbMobile
+            // 
+            this.rbMobile.AutoSize = true;
+            this.rbMobile.Location = new System.Drawing.Point(76, 21);
+            this.rbMobile.Name = "rbMobile";
+            this.rbMobile.Size = new System.Drawing.Size(47, 16);
+            this.rbMobile.TabIndex = 0;
+            this.rbMobile.Text = "携帯";
+            this.rbMobile.UseVisualStyleBackColor = true;
             // 
             // rbHome
             // 
@@ -342,16 +352,6 @@ namespace AddressBook
             this.rbHome.TabStop = true;
             this.rbHome.Text = "自宅";
             this.rbHome.UseVisualStyleBackColor = true;
-            // 
-            // rbMobile
-            // 
-            this.rbMobile.AutoSize = true;
-            this.rbMobile.Location = new System.Drawing.Point(76, 21);
-            this.rbMobile.Name = "rbMobile";
-            this.rbMobile.Size = new System.Drawing.Size(47, 16);
-            this.rbMobile.TabIndex = 0;
-            this.rbMobile.Text = "携帯";
-            this.rbMobile.UseVisualStyleBackColor = true;
             // 
             // tbTelNumber
             // 
@@ -366,7 +366,7 @@ namespace AddressBook
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(771, 522);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbKindNumber);
             this.Controls.Add(this.dtpRegistDate);
             this.Controls.Add(this.cbCompany);
             this.Controls.Add(this.btPictureClear);
@@ -398,8 +398,8 @@ namespace AddressBook
             this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbKindNumber.ResumeLayout(false);
+            this.gbKindNumber.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -434,7 +434,7 @@ namespace AddressBook
         private System.Windows.Forms.DateTimePicker dtpRegistDate;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbKindNumber;
         private System.Windows.Forms.RadioButton rbMobile;
         private System.Windows.Forms.RadioButton rbHome;
         private System.Windows.Forms.TextBox tbTelNumber;
