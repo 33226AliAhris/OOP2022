@@ -12,8 +12,8 @@ using System.Xml.Linq;
 
 namespace RssReader {
     public partial class Form1 : Form {
-        IEnumerable<string> xTitle;
-        
+        IEnumerable<string> xTitle,xLink;
+
         public Form1() {
             InitializeComponent();
         }
@@ -24,6 +24,7 @@ namespace RssReader {
 
                 var xdoc = XDocument.Load(stream);
                 xTitle = xdoc.Root.Descendants("item").Select(x => (string)x.Element("title"));
+                xLink = xdoc.Root.Descendants("item").Select(x => (string)x.Element("link"));
 
                 foreach (var data in xTitle) {
                     lbRssTitle.Items.Add(data);
@@ -33,19 +34,33 @@ namespace RssReader {
             }
         }
 
+        private void btBack_Click(object sender, EventArgs e) {
+            wvBrowser.GoBack();
+        }
+
+        private void btForward_Click(object sender, EventArgs e) {
+            wvBrowser.GoForward();
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            
+
+        }
+
+        private void wvBrowser_NavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e) {
+            btBack.Enabled = wvBrowser.CanGoBack;
+            btForward.Enabled = wvBrowser.CanGoForward;
+        }
+
         private void lbRssTitle_Click(object sender, EventArgs e) {
             var index = lbRssTitle.SelectedIndex;
-
-            using (var wc = new WebClient()) {
-                var stream = wc.OpenRead(cbRssUrl.Text);
-                
-                var xdoc = XDocument.Load(stream);
-                var xNews = xdoc.Root.Descendants("item").Select(x => (string)x.Element("link"));
-                var linklist = new List<string>(xNews);
-
-                foreach (var link in xNews) {
-                    wbBrowser.Url = new Uri(linklist[index]);
-                }
+            try {
+                var url = xLink.ElementAt(index);
+                //wbBrowser.Url = new Uri(url);
+                wvBrowser.Source = new Uri(url);
+            }
+            catch (System.ArgumentNullException) {
+                MessageBox.Show("Urlを入力してください","空値エラー");
             }
         }
     }
