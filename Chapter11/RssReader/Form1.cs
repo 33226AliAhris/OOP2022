@@ -43,25 +43,26 @@ namespace RssReader {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            
+            BackForwardButtonMaskCheck();
 
         }
 
         private void wvBrowser_NavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e) {
+            BackForwardButtonMaskCheck();
+        }
+
+        private void BackForwardButtonMaskCheck() {
+            //進む・戻るボタンのマスク設定
             btBack.Enabled = wvBrowser.CanGoBack;
             btForward.Enabled = wvBrowser.CanGoForward;
         }
 
         private void lbRssTitle_Click(object sender, EventArgs e) {
             var index = lbRssTitle.SelectedIndex;
-            try {
-                var url = xLink.ElementAt(index);
-                //wbBrowser.Url = new Uri(url);
-                wvBrowser.Source = new Uri(url);
-            }
-            catch (System.ArgumentNullException) {
-                MessageBox.Show("Urlを入力してください","空値エラー");
-            }
+            if (index == -1) return;  
+            
+            var url = xLink.ElementAt(index);
+            wvBrowser.Source = new Uri(url);
         }
     }
 }
