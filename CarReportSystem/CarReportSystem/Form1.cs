@@ -9,12 +9,17 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem{
     public partial class Form1 : Form {
         //車データ管理用リスト
         BindingList<CarReport> listCar = new BindingList<CarReport>();
         int mode;
+
+        //設定情報保存用オブジェクト
+        Settings settings = new Settings();
 
         public Form1() {
             InitializeComponent();
@@ -179,11 +184,23 @@ namespace CarReportSystem{
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+                
+            //設定ファイルを逆シリアル化して背景の色を設定
+            using (var reader = XmlReader.Create("settings.xml")) {
+                var serializer = new XmlSerializer(typeof(Settings));
+                settings = serializer.Deserialize(reader) as Settings;
+                //BackColor = settings.MainFormColor;
+            }
             JudgeMask();//マスク処理呼び出し
         }
 
         //保存ボタンのイベントハンドラ
         private void btSave_Click(object sender, EventArgs e) {
+            SaveFile();
+        }
+
+        //ファイル保存処理
+        private void SaveFile() {
             if (sfdSaveFileDialog.ShowDialog() == DialogResult.OK) {
                 try {
                     //バイナリ形式でシリアル化
@@ -199,9 +216,16 @@ namespace CarReportSystem{
             }
         }
 
+        //開くボタンのイベントハンドラ
         private void btOpen_Click(object sender, EventArgs e) {
+            OpenFile();
+            JudgeMask();//マスク処理呼び出し
+        }
+
+        //ファイル開く処理
+        private void OpenFile() {
             if (ofdFileOpenDialog.ShowDialog() == DialogResult.OK) {
-                try { 
+                try {
                     //バイナリ形式で逆シリアル化
                     var bf = new BinaryFormatter();
 
@@ -213,7 +237,7 @@ namespace CarReportSystem{
                         dgvCars.DataSource = listCar;
                     }
                 }
-                    catch (Exception ex) {
+                catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }
                 cbAuthor.Items.Clear();
@@ -226,8 +250,6 @@ namespace CarReportSystem{
                 foreach (var item in listCar.Select(p => p.CarName)) {
                     setCbCarName(item);//存在する会社を登録                   
                 }
-
-                JudgeMask();//マスク処理呼び出し
             }
         }
 
@@ -236,6 +258,38 @@ namespace CarReportSystem{
             pbPicture.SizeMode = (PictureBoxSizeMode)mode;
             mode = mode < 4 ? ++mode : 0;
 
+        }
+
+        //フォームの色設定
+        private void tsChangeColor_Click(object sender, EventArgs e) {
+            if(cdColorSelect.ShowDialog() == DialogResult.OK) {
+                BackColor = cdColorSelect.Color;
+
+                settings.MainFormColor = "ddd";
+            }
+        }
+
+        //メニューから開く
+        private void tsOpen_Click(object sender, EventArgs e) {
+            OpenFile();
+        }
+
+        //メニューから保存
+        private void tsSave_Click(object sender, EventArgs e) {
+            SaveFile();
+        }
+
+        //メニューからアプリを終了
+        private void tsExit_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルをシリアル化
+            using (var writer = XmlWriter.Create("settings.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer, settings);
+            }
         }
     }
 }
