@@ -244,7 +244,7 @@ namespace CarReportSystem
             // 
             // pbPicture
             // 
-            this.pbPicture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pbPicture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pbPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbPicture.Location = new System.Drawing.Point(423, 62);
             this.pbPicture.Name = "pbPicture";
@@ -437,6 +437,7 @@ namespace CarReportSystem
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).EndInit();

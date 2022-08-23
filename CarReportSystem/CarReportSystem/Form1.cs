@@ -16,11 +16,11 @@ namespace CarReportSystem{
     public partial class Form1 : Form {
         //車データ管理用リスト
         BindingList<CarReport> listCar = new BindingList<CarReport>();
-        int mode;
 
         //設定情報保存用オブジェクト
         Settings settings = new Settings();
 
+        int mode = 0;
         public Form1() {
             InitializeComponent();
             dgvCars.DataSource = listCar;
@@ -46,6 +46,12 @@ namespace CarReportSystem{
 
         //データグリッドビューに追加する
         private void btAddCar_Click(object sender, EventArgs e) {
+            //氏名が未入力なら登録しない
+            if (String.IsNullOrWhiteSpace(cbAuthor.Text)) {
+                MessageBox.Show("氏名が入力されていません");
+                return;
+            }
+
             var newCar = new CarReport {
                 Author = cbAuthor.Text,
                 CarName = cbCarName.Text,
@@ -55,8 +61,14 @@ namespace CarReportSystem{
 
         };
             listCar.Add(newCar);
-            dgvCars.Rows[dgvCars.RowCount - 1].Selected = true;
 
+            try {
+                dgvCars.Rows[dgvCars.RowCount - 1].Selected = true;
+            }
+            catch (Exception) {
+
+            }
+            
             JudgeMask();
             setCbAuthor(cbAuthor.Text);
             setCbCarName(cbCarName.Text);
@@ -120,6 +132,9 @@ namespace CarReportSystem{
             pbPicture.Image = listCar[index].Picture;
 
             CheckCarMaker(index);
+
+            //データグリッドビューで編集できない設定
+            dgvCars.ReadOnly = true;
         }
 
         //メーカ種別チェック処理
@@ -184,12 +199,12 @@ namespace CarReportSystem{
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-                
+
             //設定ファイルを逆シリアル化して背景の色を設定
             using (var reader = XmlReader.Create("settings.xml")) {
                 var serializer = new XmlSerializer(typeof(Settings));
                 settings = serializer.Deserialize(reader) as Settings;
-                //BackColor = settings.MainFormColor;
+                BackColor = Color.FromArgb(settings.MainFormColor);
             }
             JudgeMask();//マスク処理呼び出し
         }
@@ -264,8 +279,7 @@ namespace CarReportSystem{
         private void tsChangeColor_Click(object sender, EventArgs e) {
             if(cdColorSelect.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColorSelect.Color;
-
-                settings.MainFormColor = "ddd";
+                settings.MainFormColor = cdColorSelect.Color.ToArgb();
             }
         }
 
@@ -289,6 +303,7 @@ namespace CarReportSystem{
             using (var writer = XmlWriter.Create("settings.xml")) {
                 var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer, settings);
+                
             }
         }
     }
