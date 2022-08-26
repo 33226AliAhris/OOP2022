@@ -18,7 +18,7 @@ namespace CarReportSystem{
         BindingList<CarReport> listCar = new BindingList<CarReport>();
 
         //設定情報保存用オブジェクト
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
 
         int mode = 0;
         public Form1() {
@@ -48,7 +48,7 @@ namespace CarReportSystem{
         private void btAddCar_Click(object sender, EventArgs e) {
             //氏名が未入力なら登録しない
             if (String.IsNullOrWhiteSpace(cbAuthor.Text)) {
-                MessageBox.Show("氏名が入力されていません");
+                MessageBox.Show("氏名が入力されていません","エラー");
                 return;
             }
 
@@ -198,14 +198,18 @@ namespace CarReportSystem{
 
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
-
-            //設定ファイルを逆シリアル化して背景の色を設定
-            using (var reader = XmlReader.Create("settings.xml")) {
-                var serializer = new XmlSerializer(typeof(Settings));
-                settings = serializer.Deserialize(reader) as Settings;
-                BackColor = Color.FromArgb(settings.MainFormColor);
+        private void Form1_Load(object sender, EventArgs e) {           
+            try {
+                //設定ファイルを逆シリアル化して背景の色を設定
+                using (var reader = XmlReader.Create("settings.xml")) {
+                    var serializer = new XmlSerializer(typeof(Settings));
+                    settings = serializer.Deserialize(reader) as Settings;
+                    BackColor = Color.FromArgb(settings.MainFormColor);
+                }
             }
+            catch (Exception) {
+               
+            }                       
             JudgeMask();//マスク処理呼び出し
         }
 
