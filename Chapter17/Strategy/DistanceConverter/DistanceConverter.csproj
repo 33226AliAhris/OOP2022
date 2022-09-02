@@ -43,15 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConverterBase.cs" />
+    <Compile Include="Framework\ConverterBase.cs" />
     <Compile Include="ConcreteConverter.cs" />
     <Compile Include="ConverterFactory.cs" />
-    <Compile Include="DistanceConverter.cs" />
+    <Compile Include="Framework\DistanceConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
