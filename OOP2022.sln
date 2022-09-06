@@ -111,6 +111,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseSample", "ADONET\DataBaseSample\DataBaseSample.csproj", "{30A5D7D3-D6AE-4A6D-8A45-9C809292C68B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook", "ADONET\AddressBook\AddressBook.csproj", "{7520AC23-6A23-44EA-A6CC-874FB53C20E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -269,6 +271,10 @@ Global
 		{30A5D7D3-D6AE-4A6D-8A45-9C809292C68B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30A5D7D3-D6AE-4A6D-8A45-9C809292C68B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30A5D7D3-D6AE-4A6D-8A45-9C809292C68B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7520AC23-6A23-44EA-A6CC-874FB53C20E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7520AC23-6A23-44EA-A6CC-874FB53C20E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7520AC23-6A23-44EA-A6CC-874FB53C20E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7520AC23-6A23-44EA-A6CC-874FB53C20E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -314,6 +320,7 @@ Global
 		{F61D57CA-2EA4-4E2B-B4DF-B54686FD8F71} = {4A110A09-54E1-41F3-A95F-A35FFDE713AC}
 		{7C7590F9-924F-4DAC-ACAE-85F35192FAF2} = {F61D57CA-2EA4-4E2B-B4DF-B54686FD8F71}
 		{30A5D7D3-D6AE-4A6D-8A45-9C809292C68B} = {E7084868-E622-4146-AD83-37B4669B6F44}
+		{7520AC23-6A23-44EA-A6CC-874FB53C20E8} = {E7084868-E622-4146-AD83-37B4669B6F44}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BECCF9E-7BC8-4027-B248-BA2A13900522}
