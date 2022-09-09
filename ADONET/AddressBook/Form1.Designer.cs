@@ -26,15 +26,7 @@ namespace AddressBook {
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.addressTableDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Image = new System.Windows.Forms.DataGridViewImageColumn();
-            this.addressTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.infosys202221DataSet = new AddressBook.infosys202221DataSet();
             this.tbName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,16 +40,26 @@ namespace AddressBook {
             this.btUpdate = new System.Windows.Forms.Button();
             this.btConnect = new System.Windows.Forms.Button();
             this.btAdd = new System.Windows.Forms.Button();
-            this.addressTableTableAdapter = new AddressBook.infosys202221DataSetTableAdapters.AddressTableTableAdapter();
-            this.tableAdapterManager = new AddressBook.infosys202221DataSetTableAdapters.TableAdapterManager();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.btImageOpen = new System.Windows.Forms.Button();
             this.btImageDel = new System.Windows.Forms.Button();
             this.ofdImage = new System.Windows.Forms.OpenFileDialog();
+            this.addressTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.infosys202221DataSet = new AddressBook.infosys202221DataSet();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressTableTableAdapter = new AddressBook.infosys202221DataSetTableAdapters.AddressTableTableAdapter();
+            this.tableAdapterManager = new AddressBook.infosys202221DataSetTableAdapters.TableAdapterManager();
+            this.btNameSearch = new System.Windows.Forms.Button();
+            this.tbNameSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.addressTableDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infosys202221DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // addressTableDataGridView
@@ -74,57 +76,15 @@ namespace AddressBook {
             this.dataGridViewTextBoxColumn6,
             this.Image});
             this.addressTableDataGridView.DataSource = this.addressTableBindingSource;
-            this.addressTableDataGridView.Location = new System.Drawing.Point(2, 307);
+            this.addressTableDataGridView.Location = new System.Drawing.Point(2, 365);
             this.addressTableDataGridView.MultiSelect = false;
             this.addressTableDataGridView.Name = "addressTableDataGridView";
             this.addressTableDataGridView.ReadOnly = true;
             this.addressTableDataGridView.RowTemplate.Height = 21;
             this.addressTableDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.addressTableDataGridView.Size = new System.Drawing.Size(748, 229);
+            this.addressTableDataGridView.Size = new System.Drawing.Size(748, 179);
             this.addressTableDataGridView.TabIndex = 1;
             this.addressTableDataGridView.Click += new System.EventHandler(this.addressTableDataGridView_Click);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Address";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Tel";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Tel";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Mail";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Mail";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Memo";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Memo";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // Image
             // 
@@ -132,16 +92,6 @@ namespace AddressBook {
             this.Image.HeaderText = "Image";
             this.Image.Name = "Image";
             this.Image.ReadOnly = true;
-            // 
-            // addressTableBindingSource
-            // 
-            this.addressTableBindingSource.DataMember = "AddressTable";
-            this.addressTableBindingSource.DataSource = this.infosys202221DataSet;
-            // 
-            // infosys202221DataSet
-            // 
-            this.infosys202221DataSet.DataSetName = "infosys202221DataSet";
-            this.infosys202221DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tbName
             // 
@@ -237,7 +187,7 @@ namespace AddressBook {
             // btUpdate
             // 
             this.btUpdate.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btUpdate.Location = new System.Drawing.Point(777, 456);
+            this.btUpdate.Location = new System.Drawing.Point(781, 457);
             this.btUpdate.Name = "btUpdate";
             this.btUpdate.Size = new System.Drawing.Size(109, 30);
             this.btUpdate.TabIndex = 4;
@@ -248,7 +198,7 @@ namespace AddressBook {
             // btConnect
             // 
             this.btConnect.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btConnect.Location = new System.Drawing.Point(777, 503);
+            this.btConnect.Location = new System.Drawing.Point(781, 504);
             this.btConnect.Name = "btConnect";
             this.btConnect.Size = new System.Drawing.Size(109, 33);
             this.btConnect.TabIndex = 4;
@@ -259,23 +209,13 @@ namespace AddressBook {
             // btAdd
             // 
             this.btAdd.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btAdd.Location = new System.Drawing.Point(777, 411);
+            this.btAdd.Location = new System.Drawing.Point(781, 412);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(109, 30);
             this.btAdd.TabIndex = 4;
             this.btAdd.Text = "追加";
             this.btAdd.UseVisualStyleBackColor = true;
             this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
-            // 
-            // addressTableTableAdapter
-            // 
-            this.addressTableTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AddressTableTableAdapter = this.addressTableTableAdapter;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.UpdateOrder = AddressBook.infosys202221DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // pbImage
             // 
@@ -314,15 +254,98 @@ namespace AddressBook {
             // 
             this.ofdImage.FileName = "openFileDialog1";
             // 
+            // addressTableBindingSource
+            // 
+            this.addressTableBindingSource.DataMember = "AddressTable";
+            this.addressTableBindingSource.DataSource = this.infosys202221DataSet;
+            // 
+            // infosys202221DataSet
+            // 
+            this.infosys202221DataSet.DataSetName = "infosys202221DataSet";
+            this.infosys202221DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Tel";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Tel";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Mail";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Mail";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Memo";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Memo";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // addressTableTableAdapter
+            // 
+            this.addressTableTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AddressTableTableAdapter = this.addressTableTableAdapter;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.UpdateOrder = AddressBook.infosys202221DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // btNameSearch
+            // 
+            this.btNameSearch.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btNameSearch.Location = new System.Drawing.Point(12, 317);
+            this.btNameSearch.Name = "btNameSearch";
+            this.btNameSearch.Size = new System.Drawing.Size(94, 30);
+            this.btNameSearch.TabIndex = 4;
+            this.btNameSearch.Text = "名前検索";
+            this.btNameSearch.UseVisualStyleBackColor = true;
+            this.btNameSearch.Click += new System.EventHandler(this.btNameSearch_Click);
+            // 
+            // tbNameSearch
+            // 
+            this.tbNameSearch.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbNameSearch.Location = new System.Drawing.Point(117, 317);
+            this.tbNameSearch.Name = "tbNameSearch";
+            this.tbNameSearch.Size = new System.Drawing.Size(217, 28);
+            this.tbNameSearch.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 547);
+            this.ClientSize = new System.Drawing.Size(913, 557);
+            this.Controls.Add(this.tbNameSearch);
             this.Controls.Add(this.pbImage);
             this.Controls.Add(this.btConnect);
             this.Controls.Add(this.btImageDel);
             this.Controls.Add(this.btImageOpen);
+            this.Controls.Add(this.btNameSearch);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.btUpdate);
             this.Controls.Add(this.label5);
@@ -340,9 +363,9 @@ namespace AddressBook {
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.addressTableDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.infosys202221DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,6 +402,8 @@ namespace AddressBook {
         private System.Windows.Forms.Button btImageOpen;
         private System.Windows.Forms.Button btImageDel;
         private System.Windows.Forms.OpenFileDialog ofdImage;
+        private System.Windows.Forms.Button btNameSearch;
+        private System.Windows.Forms.TextBox tbNameSearch;
     }
 }
 
