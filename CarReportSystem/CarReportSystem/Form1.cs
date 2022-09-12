@@ -198,7 +198,11 @@ namespace CarReportSystem{
 
         }
 
-        private void Form1_Load(object sender, EventArgs e) {           
+        private void Form1_Load(object sender, EventArgs e) {
+            // TODO: このコード行はデータを 'infosys202221DataSet.CarReportDB' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportDBTableAdapter.Fill(this.infosys202221DataSet.CarReportDB);
+            // TODO: このコード行はデータを 'infosys202221DataSet.CarReportDB' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportDBTableAdapter.Fill(this.infosys202221DataSet.CarReportDB);
             try {
                 //設定ファイルを逆シリアル化して背景の色を設定
                 using (var reader = XmlReader.Create("settings.xml")) {
@@ -309,6 +313,20 @@ namespace CarReportSystem{
                 serializer.Serialize(writer, settings);
                 
             }
+        }
+
+        private void carReportDBBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
+            this.Validate();
+            this.carReportDBBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202221DataSet);
+
+        }
+
+        private void carReportDBBindingNavigatorSaveItem_Click_1(object sender, EventArgs e) {
+            this.Validate();
+            this.carReportDBBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202221DataSet);
+
         }
     }
 }
