@@ -26,19 +26,20 @@ namespace AddressBook {
 
         }
 
-        private void btConnect_Click(object sender, EventArgs e) {
-            // TODO: このコード行はデータを 'infosys202221DataSet.AddressTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-            this.addressTableTableAdapter.Fill(this.infosys202221DataSet.AddressTable);
-        }
-
         private void btAdd_Click(object sender, EventArgs e) {
+            //氏名が未入力なら登録しない
+            if (String.IsNullOrWhiteSpace(tbName.Text)) {
+                MessageBox.Show("氏名が入力されていません", "エラー");
+                return;
+            }
+
             DataRow newRow = infosys202221DataSet.AddressTable.NewRow();
             newRow[1] = tbName.Text;
             newRow[2] = tbAddress.Text;
             newRow[3] = tbTel.Text;
             newRow[4] = tbMail.Text;
             newRow[5] = tbMemo.Text;
-            newRow[6] = pbImage.Image;
+            newRow[6] = ImageToByteArray(pbImage.Image);
 
             //データセットへ新しいレコードを追加
             infosys202221DataSet.AddressTable.Rows.Add(newRow);
@@ -79,14 +80,16 @@ namespace AddressBook {
                 pbImage.Image = null;                   
         }
 
+        //画像を開く
         private void btImageOpen_Click(object sender, EventArgs e) {
-            ofdImage.Filter = "画像ファイル(*.jpg; *.png; *.bmp)| *.jpg; *.png; *.bmp";
+            //ofdImage.Filter = "画像ファイル(*.jpg; *.jpeg; *.png; *.bmp)| *.jpg; *.png; *.bmp *.jpeg;";
             if (ofdImage.ShowDialog() == DialogResult.OK) {
                 pbImage.Image = System.Drawing.Image.FromFile(ofdImage.FileName);
 
             }
         }
 
+        //画像を削除
         private void btImageDel_Click(object sender, EventArgs e) {
             pbImage.Image = null;
         }
@@ -105,8 +108,41 @@ namespace AddressBook {
             return b;
         }
 
+        //名前検索
         private void btNameSearch_Click(object sender, EventArgs e) {
             addressTableTableAdapter.FillByName(infosys202221DataSet.AddressTable, tbNameSearch.Text);
+        }
+
+        //データグリッドビューをクリア
+        private void btClear_Click(object sender, EventArgs e) {
+            tbName.Text = null;
+            tbAddress.Text = null;
+            tbTel.Text = null;
+            tbMemo.Text = null;
+            tbMail.Text = null;
+            pbImage.Image = null;
+
+        }
+
+        //データベース接続
+        private void msDbConnect_Click(object sender, EventArgs e) {
+            this.addressTableTableAdapter.Fill(this.infosys202221DataSet.AddressTable);
+        }
+
+        //名前検索をクリア・データベース再接続
+        private void btSearchClear_Click(object sender, EventArgs e) {
+            tbNameSearch.Text = null;
+            this.addressTableTableAdapter.Fill(this.infosys202221DataSet.AddressTable);
+        }
+
+        //アプリを終了
+        private void msExit_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
+        //バージョン情報
+        private void msVersionInfo_Click(object sender, EventArgs e) {
+            new Version().ShowDialog();
         }
     }
 }
