@@ -39,9 +39,14 @@ namespace CarReportSystem {
 
         // バイト配列をImageオブジェクトに変換
         public static Image ByteArrayToImage(byte[] b) {
-            ImageConverter imgconv = new ImageConverter();
-            Image img = (Image)imgconv.ConvertFrom(b);
-            return img;
+            try {
+                ImageConverter imgconv = new ImageConverter();
+                Image img = (Image)imgconv.ConvertFrom(b);
+                return img;
+            }
+            catch (Exception) {
+                return null;
+            }       
         }
 
         // Imageオブジェクトをバイト配列に変換
@@ -70,9 +75,7 @@ namespace CarReportSystem {
             newRow[3] = GetCarMaker();
             newRow[4] = cbCarName.Text;
             newRow[5] = tbReport.Text;
-            if (pbPicture.Image != null) {
-                newRow[6] = ImageToByteArray(pbPicture.Image);
-            }
+            newRow[6] = ImageToByteArray(pbPicture.Image);
 
             //データセットへ新しいレコードを追加
             infosys202221DataSet.CarReportDB.Rows.Add(newRow);
@@ -181,24 +184,28 @@ namespace CarReportSystem {
 
         //修正ボタンが押された時の処理
         private void btCorrection_Click(object sender, EventArgs e) {
+            if (dgvCars.CurrentRow == null) {
+                MessageBox.Show("更新するデータがありません", "エラー");
 
-            //各テキストボックスからデータグリッドビューへの設定
-            dgvCars.CurrentRow.Cells[1].Value = dtpDate.Value;
-            dgvCars.CurrentRow.Cells[2].Value = cbAuthor.Text;
-            dgvCars.CurrentRow.Cells[3].Value = GetCarMaker();
-            dgvCars.CurrentRow.Cells[4].Value = cbCarName.Text;
-            dgvCars.CurrentRow.Cells[5].Value = tbReport.Text;
-            dgvCars.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);
+            }
+            else {
+                //各テキストボックスからデータグリッドビューへの設定
+                dgvCars.CurrentRow.Cells[1].Value = dtpDate.Value;
+                dgvCars.CurrentRow.Cells[2].Value = cbAuthor.Text;
+                dgvCars.CurrentRow.Cells[3].Value = GetCarMaker();
+                dgvCars.CurrentRow.Cells[4].Value = cbCarName.Text;
+                dgvCars.CurrentRow.Cells[5].Value = tbReport.Text;
+                dgvCars.CurrentRow.Cells[6].Value = ImageToByteArray(pbPicture.Image);
 
-            //データセットの中をデータベースへ反映（保存）
-            this.Validate();
-            this.carReportDBBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.infosys202221DataSet);
-
+                //データセットの中をデータベースへ反映（保存）
+                this.Validate();
+                this.carReportDBBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.infosys202221DataSet);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            this.carReportDBTableAdapter.Fill(this.infosys202221DataSet.CarReportDB);
+            //this.carReportDBTableAdapter.Fill(this.infosys202221DataSet.CarReportDB);
 
             try {
                 //設定ファイルを逆シリアル化して背景の色を設定
@@ -242,13 +249,6 @@ namespace CarReportSystem {
             }
         }
 
-        private void carReportDBBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
-            this.Validate();
-            this.carReportDBBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.infosys202221DataSet);
-
-        }
-
         //データベース接続
         private void msDbConnect_Click(object sender, EventArgs e) {
             this.carReportDBTableAdapter.Fill(this.infosys202221DataSet.CarReportDB);
@@ -273,9 +273,28 @@ namespace CarReportSystem {
 
         }
 
+        //データ削除処理
         private void btDelete_Click(object sender, EventArgs e) {
-            infosys202221DataSet.CarReportDB.Rows.RemoveAt(dgvCars.CurrentRow.Index);
+            if (dgvCars.CurrentRow == null) 
+                MessageBox.Show("削除するデータがありません","エラー");
 
+            else
+
+            dgvCars.Rows.RemoveAt(dgvCars.CurrentRow.Index);
+            this.Validate();
+            this.carReportDBBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202221DataSet);
+        }
+
+        //車名検索
+        private void btCarNameSearch_Click(object sender, EventArgs e) {
+            carReportDBTableAdapter.FillByName(infosys202221DataSet.CarReportDB, tbCarSearch.Text);
+        }
+
+        //車名検索をクリア・データベース再接続
+        private void btClearSearch_Click(object sender, EventArgs e) {
+            tbCarSearch.Text = null;
+            this.carReportDBTableAdapter.Fill(this.infosys202221DataSet.CarReportDB);
         }
     }
 }
