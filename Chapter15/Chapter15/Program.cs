@@ -45,24 +45,24 @@ namespace Chapter15 {
 
             Console.WriteLine();
             var selected = Library.Books
-                .OrderByDescending(o => o.PublishedYear)
-                .ThenBy(b => b.CategoryId)
+                .Where(b => years.Contains(b.PublishedYear))
                 .Join(Library.Categories,           //結合する2番目のシーケンス
                       book => book.CategoryId,      //対象シーケンスの結合キー
                       category => category.Id,      //2番目のシーケンスの結合キー
                       (book, category) => new {
                           Title = book.Title,
                           Category = category.Name,
-                          PublishedYear = book.PublishedYear
+                          PublishedYear = book.PublishedYear,
+                          Price = book.Price
                       });
 
-            foreach (var book in selected) {
-                foreach (var y in years) {
-                    if (y == book.PublishedYear) {
-                        Console.WriteLine($" {book.PublishedYear},{book.Title},{book.Category}");
-                    }
-                }            
+            foreach (var book in selected
+                                    .OrderByDescending(x => x.PublishedYear)
+                                    .ThenBy(x => x.Category)) {
+
+                Console.WriteLine($" {book.PublishedYear},{book.Title},{book.Category}");                
             }
+            Console.WriteLine($" 合計金額:{selected.Sum(x => x.Price)}");
         }
     }
 }
