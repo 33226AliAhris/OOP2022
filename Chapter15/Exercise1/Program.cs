@@ -80,11 +80,37 @@ namespace Exercise1 {
         }
 
         private static void Exercise1_6() {
-            
+            var group = Library.Books
+                               .Join(Library.Categories,
+                                     book => book.CategoryId,
+                                     category => category.Id,
+                                     (book, category) => new {
+                                         Title = book.Title,
+                                         CategoryName = category.Name
+                                     })
+                               .GroupBy(x => x.CategoryName)
+                               .OrderBy(x => x.Key);
+            foreach (var item in group) {
+                Console.WriteLine($"#{item.Key}");
+                foreach (var items in item) {
+                    Console.WriteLine($" {items.Title}");
+                }
+            }
         }
 
         private static void Exercise1_7() {
+            var categoryId = Library.Categories.Single(c => c.Name == "Development").Id;
+            var groups = Library.Books
+                                .Where(b => b.CategoryId == categoryId)
+                                .GroupBy(b => b.PublishedYear)
+                                .OrderBy(b => b.Key);
 
+            foreach (var item in groups) {
+                Console.WriteLine($"#{item.Key}");
+                foreach (var items in item) {
+                    Console.WriteLine($" {items.Title}");
+                }
+            }
         }
 
         private static void Exercise1_8() {
