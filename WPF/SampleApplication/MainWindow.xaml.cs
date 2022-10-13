@@ -25,5 +25,13 @@ namespace SampleApplication {
         private void Button_Click(object sender, RoutedEventArgs e) {
             MessageBox.Show("ボタンが押された");
         }
+
+        private void okButton_Click(object sender, RoutedEventArgs e) {
+            MessageBox.Show("入力された文字は " + messageTextBox.Text + " です。");
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e) {
+            MessageBox.Show("キャンセルされました。");
+        }
     }
 }
