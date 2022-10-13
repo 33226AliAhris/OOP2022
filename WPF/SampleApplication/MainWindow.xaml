@@ -6,14 +6,26 @@
         xmlns:local="clr-namespace:SampleApplication"
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="300" FontSize="14">
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="okButton" Content="OK" Width="75" Margin="5" Click="okButton_Click"/>
-            <Button x:Name="cancelButton" Content="キャンセル" Width="75" Margin="5" Click="cancelButton_Click"/>
-        </StackPanel>
-        <StackPanel>
-            <TextBlock TextWrapping="Wrap" Text="メッセージを入力してください"/>
-            <TextBox x:Name="messageTextBox" Height="23" TextWrapping="Wrap" Width="120"/>
-        </StackPanel>
-    </DockPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                   Text="項目"/>
+        <TextBlock Grid.Column="2" Text="設定値"/>
+        <Label Grid.Row="1" Content="ON/OFF(_O)"/>
+        <CheckBox x:Name="checkBox" Grid.Row="1" Grid.Column="1" 
+                  Content="チェックしたらON" VerticalAlignment="Center"
+                  Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
+
+    </Grid>
 </Window>
