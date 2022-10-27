@@ -50,13 +50,12 @@ namespace ColorChecker {
             var color = mycolor.Color;
             var name = mycolor.Name;
 
-            colorLabel.Background = new SolidColorBrush(Color.FromArgb(color.A,color.R,color.G,color.B));
+            colorLabel.Background = new SolidColorBrush(Color.FromRgb(color.R,color.G,color.B));
 
             redValue.Text = color.R.ToString();
             greenValue.Text = color.G.ToString();
             blueValue.Text = color.B.ToString();
 
         }
-
     }
 }

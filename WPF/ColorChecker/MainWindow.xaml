@@ -39,11 +39,11 @@
                            VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
 
                 <Slider x:Name="rSlider" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" 
-                        VerticalAlignment="Center" Maximum="255" ValueChanged="rSlider_ValueChanged"/>
+                        VerticalAlignment="Center" Maximum="255" ValueChanged="rSlider_ValueChanged" IsSnapToTickEnabled="True"/>
                 <Slider x:Name="gSlider" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" 
-                        VerticalAlignment="Center" Maximum="255" ValueChanged="rSlider_ValueChanged"/>
+                        VerticalAlignment="Center" Maximum="255" ValueChanged="rSlider_ValueChanged" IsSnapToTickEnabled="True"/>
                 <Slider x:Name="bSlider" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" 
-                        VerticalAlignment="Center" Maximum="255" ValueChanged="rSlider_ValueChanged"/>
+                        VerticalAlignment="Center" Maximum="255" ValueChanged="rSlider_ValueChanged" IsSnapToTickEnabled="True"/>
 
                 <TextBox x:Name="redValue" Grid.Column="4" Grid.Row="1" Height="20" Margin="5"
                          Text="{Binding ElementName=rSlider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
