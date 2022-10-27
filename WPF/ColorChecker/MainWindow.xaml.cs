@@ -26,6 +26,8 @@ namespace ColorChecker {
             DataContext = GetColorList();
         }
 
+        public List<MyColor> stockMyColor;
+
         private void rSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             colorLabel.Background = new SolidColorBrush(Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value));
         }
@@ -56,6 +58,14 @@ namespace ColorChecker {
             greenValue.Text = color.G.ToString();
             blueValue.Text = color.B.ToString();
 
+            stockMyColor.Add(new MyColor() {
+                Name = name
+            });
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            var rgb = stockMyColor.Select(c => c.Name);
+            redValue.Text = rgb.ToString();
         }
     }
 }
