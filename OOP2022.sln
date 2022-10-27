@@ -135,6 +135,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUnitConverter", "WPF\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorChecker", "WPF\ColorChecker\ColorChecker.csproj", "{AC8EEC84-12A9-40F9-BBAF-E4BDF1C1DA2D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBaseMacro", "DataBaseMacro", "{BD391CB3-0660-433B-8E5E-E59894121403}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelToTxt", "DataBaseMacro\ExcelToTxt\ExcelToTxt.csproj", "{D3FA644B-650C-4304-B012-8CAB146615E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -329,6 +333,10 @@ Global
 		{AC8EEC84-12A9-40F9-BBAF-E4BDF1C1DA2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC8EEC84-12A9-40F9-BBAF-E4BDF1C1DA2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC8EEC84-12A9-40F9-BBAF-E4BDF1C1DA2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3FA644B-650C-4304-B012-8CAB146615E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3FA644B-650C-4304-B012-8CAB146615E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3FA644B-650C-4304-B012-8CAB146615E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3FA644B-650C-4304-B012-8CAB146615E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -383,6 +391,7 @@ Global
 		{E7F61ED7-7EE8-4361-B7C8-865B120ABB2A} = {E8C8DE2F-134E-450D-B69A-0751C94FB4E2}
 		{E5758D9D-C05C-456C-9CBE-E9748BC72079} = {E8C8DE2F-134E-450D-B69A-0751C94FB4E2}
 		{AC8EEC84-12A9-40F9-BBAF-E4BDF1C1DA2D} = {E8C8DE2F-134E-450D-B69A-0751C94FB4E2}
+		{D3FA644B-650C-4304-B012-8CAB146615E1} = {BD391CB3-0660-433B-8E5E-E59894121403}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4BECCF9E-7BC8-4027-B248-BA2A13900522}

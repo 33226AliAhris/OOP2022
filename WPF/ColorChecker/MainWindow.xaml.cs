@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,27 +20,43 @@ namespace ColorChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
-        int rValue = 0;
-        int gValue = 0;
-        int bValue = 0;
 
         public MainWindow() {
             InitializeComponent();
+            DataContext = GetColorList();
         }
 
         private void rSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            int rValue = (int)rSlider.Value;
-            colorLabel.Background = new SolidColorBrush(Color.FromRgb((byte)rValue, (byte)gValue, (byte)bValue));
+            colorLabel.Background = new SolidColorBrush(Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value));
         }
 
-        private void gSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            int gValue = (int)gSlider.Value;
-            colorLabel.Background = new SolidColorBrush(Color.FromRgb((byte)rValue, (byte)gValue, (byte)bValue));
+        private MyColor[] GetColorList() {
+            return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
+                .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
         }
 
-        private void bSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            int bValue = (int)bSlider.Value;
-            colorLabel.Background = new SolidColorBrush(Color.FromRgb((byte)rValue, (byte)gValue, (byte)bValue));
+        public class MyColor {
+            public Color Color { get; set; }
+            public string Name { get; set; }
+
         }
+
+        private void Border_Loaded(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+            var color = mycolor.Color;
+            var name = mycolor.Name;
+
+            colorLabel.Background = new SolidColorBrush(Color.FromArgb(color.A,color.R,color.G,color.B));
+
+            redValue.Text = color.R.ToString();
+            greenValue.Text = color.G.ToString();
+            blueValue.Text = color.B.ToString();
+
+        }
+
     }
 }

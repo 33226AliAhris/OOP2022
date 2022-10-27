@@ -37,22 +37,40 @@
                            VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
                 <TextBlock Text="B" Grid.Column="0" Grid.Row="3" 
                            VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
-                
+
                 <Slider x:Name="rSlider" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" 
                         VerticalAlignment="Center" Maximum="255" ValueChanged="rSlider_ValueChanged"/>
                 <Slider x:Name="gSlider" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" 
-                        VerticalAlignment="Center" Maximum="255" ValueChanged="gSlider_ValueChanged"/>
+                        VerticalAlignment="Center" Maximum="255" ValueChanged="rSlider_ValueChanged"/>
                 <Slider x:Name="bSlider" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" 
-                        VerticalAlignment="Center" Maximum="255" ValueChanged="bSlider_ValueChanged"/>
-                
-                <TextBox Grid.Column="4" Grid.Row="1" Height="20" Margin="5"
+                        VerticalAlignment="Center" Maximum="255" ValueChanged="rSlider_ValueChanged"/>
+
+                <TextBox x:Name="redValue" Grid.Column="4" Grid.Row="1" Height="20" Margin="5"
                          Text="{Binding ElementName=rSlider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox Grid.Column="4" Grid.Row="2" Height="20" Margin="5"
+                <TextBox x:Name="greenValue" Grid.Column="4" Grid.Row="2" Height="20" Margin="5"
                          Text="{Binding ElementName=gSlider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox Grid.Column="4" Grid.Row="3" Height="20" Margin="5"
+                <TextBox x:Name="blueValue" Grid.Column="4" Grid.Row="3" Height="20" Margin="5"
                          Text="{Binding ElementName=bSlider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
+                
+                <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding}" SelectedValue="{Binding Color}" 
+                          Margin="16,10,10,16" Height="24" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+                          HorizontalAlignment="Center" Width="155" Grid.ColumnSpan="3" SelectionChanged="ComboBox_SelectionChanged" BorderThickness="3,2">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" 
+                                        BorderBrush="Black" Loaded="Border_Loaded"  >
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{Binding Color}"/>
+                                    </Border.Background>
+                                </Border>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </Grid>
-            <Label Name="colorLabel" Grid.Column="0" Grid.Row="0" Background="#FF241919" Margin="55,20,55,29"/>
+            <Label Name="colorLabel" Grid.Column="0" Grid.Row="0" Background="Black" Margin="55,20,55,29" BorderThickness="1" BorderBrush="Black"/>
         </Grid>
     </StackPanel>
 </Window>
