@@ -73,7 +73,7 @@
                         Margin="110,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="88" Height="34" FontSize="18" Click="Button_Click"
                         />
                 <ListBox x:Name="colorList" Grid.ColumnSpan="3" Grid.Column="2" HorizontalAlignment="Left" Height="240" 
-                         Margin="85,10,0,0" Grid.RowSpan="5" VerticalAlignment="Top" Width="378"/>
+                         Margin="85,10,0,0" Grid.RowSpan="5" VerticalAlignment="Top" Width="378" SelectionChanged="colorList_SelectionChanged"/>
             </Grid>
             <Label Name="colorLabel" Grid.Column="0" Grid.Row="0" Background="Black" Margin="55,20,55,29" BorderThickness="1" BorderBrush="Black"/>
         </Grid>

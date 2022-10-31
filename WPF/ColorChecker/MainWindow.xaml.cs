@@ -21,12 +21,14 @@ namespace ColorChecker {
     /// </summary>
     public partial class MainWindow : Window {
 
+        MyColor mycolor = new MyColor();
+
         public MainWindow() {
             InitializeComponent();
             DataContext = GetColorList();
         }
 
-        public List<MyColor> stockMyColor;
+        public List<MyColor> stockMyColor = new List<MyColor>();
 
         private void rSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             colorLabel.Background = new SolidColorBrush(Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value));
@@ -52,20 +54,28 @@ namespace ColorChecker {
             var color = mycolor.Color;
             var name = mycolor.Name;
 
+            stockMyColor.Add(new MyColor() {
+                Name = name,
+                Color = color
+            });
+
             colorLabel.Background = new SolidColorBrush(Color.FromRgb(color.R,color.G,color.B));
 
             redValue.Text = color.R.ToString();
             greenValue.Text = color.G.ToString();
             blueValue.Text = color.B.ToString();
-
-            stockMyColor.Add(new MyColor() {
-                Name = name
-            });
+ 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
-            var rgb = stockMyColor.Select(c => c.Name);
-            redValue.Text = rgb.ToString();
+            var color = stockMyColor.Select(c => c.Color);
+            var name = stockMyColor.Select(n => n.Name);
+            //colorList.Items.Add(("R：" + color.Last().R, " G：" + color.Last().G, " B：" + color.Last().B,name.Last()));
+            colorList.Items.Add($"R：{color.Last().R}  G：{color.Last().G}  B：{color.Last().B}  {name.Last()}");
+        }
+
+        private void colorList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
         }
     }
 }
