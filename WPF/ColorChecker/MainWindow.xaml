@@ -52,7 +52,7 @@
                 <TextBox x:Name="blueValue" Grid.Column="1" Grid.Row="3" Height="20" Margin="110,17,118,13"
                          Text="{Binding ElementName=bSlider,Path=Value,UpdateSourceTrigger=PropertyChanged,StringFormat={}{0:N0}}" Grid.ColumnSpan="2"/>
 
-                <ComboBox Grid.Column="0" Grid.Row="4" ItemsSource="{Binding}" SelectedValue="{Binding Color}" 
+                <ComboBox x:Name="cmBox" Grid.Column="0" Grid.Row="4" ItemsSource="{Binding}" SelectedValue="{Binding Color}" 
                           Margin="46,16,114,10" Height="24" VerticalAlignment="Center" VerticalContentAlignment="Center" 
                           HorizontalAlignment="Center" Width="156" Grid.ColumnSpan="2" SelectionChanged="ComboBox_SelectionChanged" BorderThickness="3,2">
                     <ComboBox.ItemTemplate>
@@ -74,6 +74,7 @@
                         />
                 <ListBox x:Name="colorList" Grid.ColumnSpan="3" Grid.Column="2" HorizontalAlignment="Left" Height="240" 
                          Margin="85,10,0,0" Grid.RowSpan="5" VerticalAlignment="Top" Width="378" SelectionChanged="colorList_SelectionChanged"/>
+                <Button x:Name="btDel" Grid.ColumnSpan="2" Content="削除" Grid.Column="1" HorizontalAlignment="Left" Margin="110,16,0,0" VerticalAlignment="Top" Width="88" Height="34" FontSize="18" Click="btDel_Click"/>
             </Grid>
             <Label Name="colorLabel" Grid.Column="0" Grid.Row="0" Background="Black" Margin="55,20,55,29" BorderThickness="1" BorderBrush="Black"/>
         </Grid>

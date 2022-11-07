@@ -28,7 +28,7 @@ namespace ColorChecker {
             DataContext = GetColorList();
         }
 
-        public List<MyColor> stockMyColor = new List<MyColor>();
+        public List<MyColor> stockMyColor = new List<MyColor>();   
 
         private void rSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             colorLabel.Background = new SolidColorBrush(Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value));
@@ -64,18 +64,35 @@ namespace ColorChecker {
             redValue.Text = color.R.ToString();
             greenValue.Text = color.G.ToString();
             blueValue.Text = color.B.ToString();
- 
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
-            var color = stockMyColor.Select(c => c.Color);
-            var name = stockMyColor.Select(n => n.Name);
-            //colorList.Items.Add(("R：" + color.Last().R, " G：" + color.Last().G, " B：" + color.Last().B,name.Last()));
-            colorList.Items.Add($"R：{color.Last().R}  G：{color.Last().G}  B：{color.Last().B}  {name.Last()}");
+            colorList.Items.Add($"R:{((byte)rSlider.Value)}  G:{((byte)gSlider.Value)}  B:{((byte)bSlider.Value)}");
+
+            MyColor stColor = new MyColor();
+            var red = ((byte)rSlider.Value);
+            var green = ((byte)gSlider.Value);        
+            var blue = ((byte)bSlider.Value);   
+
+            stColor.Color = Color.FromRgb(red, green, blue);
+
+            var colorName = ((IEnumerable<MyColor>)DataContext)
+                                .Where(c => c.Color.R == stColor.Color.R &&
+                                            c.Color.G == stColor.Color.G &&
+                                            c.Color.B == stColor.Color.B).FirstOrDefault();
+            colorList.Items.Insert(0,colorName?.Name ?? "R:" + redValue.Text + " G:" + greenValue.Text + " B:" + blueValue.Text);
+            stockMyColor.Insert(0,stColor);
         }
 
         private void colorList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            rSlider.Value = stockMyColor[colorList.SelectedIndex].Color.R;
+            gSlider.Value = stockMyColor[colorList.SelectedIndex].Color.G;
+            bSlider.Value = stockMyColor[colorList.SelectedIndex].Color.B;
+        }
 
+        private void btDel_Click(object sender, RoutedEventArgs e) {
+            colorList.Items.Clear();
         }
     }
 }
