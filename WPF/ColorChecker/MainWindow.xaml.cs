@@ -45,10 +45,6 @@ namespace ColorChecker {
 
         }
 
-        private void Border_Loaded(object sender, RoutedEventArgs e) {
-
-        }
-
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
             var color = mycolor.Color;
@@ -81,12 +77,12 @@ namespace ColorChecker {
                                             c.Color.G == stColor.Color.G &&
                                             c.Color.B == stColor.Color.B).FirstOrDefault();
             colorList.Items.Insert(0,colorName?.Name ?? "R:" + redValue.Text + " G:" + greenValue.Text + " B:" + blueValue.Text);
-            stockMyColor.Insert(0,stColor);
+            stockMyColor.Insert(0,stColor);           
         }
 
         private void btDel_Click(object sender, RoutedEventArgs e) {
             if (colorList.SelectedIndex == -1) return;
-
+            
             stockMyColor.RemoveAt(colorList.SelectedIndex);
             colorList.Items.RemoveAt(colorList.SelectedIndex);           
         }
@@ -96,6 +92,14 @@ namespace ColorChecker {
             rSlider.Value = stockMyColor[colorList.SelectedIndex].Color.R;
             gSlider.Value = stockMyColor[colorList.SelectedIndex].Color.G;
             bSlider.Value = stockMyColor[colorList.SelectedIndex].Color.B;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e) {           
+            
+        }
+
+        private void Border_Loaded(object sender, RoutedEventArgs e) {
+
         }
     }
 }
