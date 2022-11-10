@@ -67,8 +67,7 @@ namespace ColorChecker {
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            colorList.Items.Add($"R:{((byte)rSlider.Value)}  G:{((byte)gSlider.Value)}  B:{((byte)bSlider.Value)}");
+        private void Button_Click(object sender, RoutedEventArgs e) {         
 
             MyColor stColor = new MyColor();
             var red = ((byte)rSlider.Value);
@@ -85,14 +84,18 @@ namespace ColorChecker {
             stockMyColor.Insert(0,stColor);
         }
 
-        private void colorList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            rSlider.Value = stockMyColor[colorList.SelectedIndex].Color.R;
-            gSlider.Value = stockMyColor[colorList.SelectedIndex].Color.G;
-            bSlider.Value = stockMyColor[colorList.SelectedIndex].Color.B;
+        private void btDel_Click(object sender, RoutedEventArgs e) {
+            colorList.Items.Remove(colorList.SelectedItem);
         }
 
-        private void btDel_Click(object sender, RoutedEventArgs e) {
-            colorList.Items.Clear();
+        private void colorList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            try {
+                rSlider.Value = stockMyColor[colorList.SelectedIndex].Color.R;
+                gSlider.Value = stockMyColor[colorList.SelectedIndex].Color.G;
+                bSlider.Value = stockMyColor[colorList.SelectedIndex].Color.B;
+            }
+            catch (Exception) {
+            }
         }
     }
 }
