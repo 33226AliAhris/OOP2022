@@ -85,17 +85,17 @@ namespace ColorChecker {
         }
 
         private void btDel_Click(object sender, RoutedEventArgs e) {
-            colorList.Items.Remove(colorList.SelectedItem);
+            if (colorList.SelectedIndex == -1) return;
+
+            stockMyColor.RemoveAt(colorList.SelectedIndex);
+            colorList.Items.RemoveAt(colorList.SelectedIndex);           
         }
 
         private void colorList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            try {
-                rSlider.Value = stockMyColor[colorList.SelectedIndex].Color.R;
-                gSlider.Value = stockMyColor[colorList.SelectedIndex].Color.G;
-                bSlider.Value = stockMyColor[colorList.SelectedIndex].Color.B;
-            }
-            catch (Exception) {
-            }
+            if (colorList.SelectedIndex == -1) return ;
+            rSlider.Value = stockMyColor[colorList.SelectedIndex].Color.R;
+            gSlider.Value = stockMyColor[colorList.SelectedIndex].Color.G;
+            bSlider.Value = stockMyColor[colorList.SelectedIndex].Color.B;
         }
     }
 }
