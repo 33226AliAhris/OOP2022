@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeatherApp.Properties {
+namespace WeatherAppNew.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WeatherApp.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WeatherApp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WeatherAppNew.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,16 +63,6 @@ namespace WeatherApp.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _1810 {
-            get {
-                object obj = ResourceManager.GetObject("1810", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        /// </summary>
         internal static System.Drawing.Bitmap DD_Blue_Sky_Background_40123_Preview {
             get {
                 object obj = ResourceManager.GetObject("DD-Blue-Sky-Background-40123-Preview", resourceCulture);
@@ -83,9 +73,9 @@ namespace WeatherApp.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap スクリーンショット_2022_11_14_143113 {
+        internal static System.Drawing.Bitmap sun {
             get {
-                object obj = ResourceManager.GetObject("スクリーンショット 2022-11-14 143113", resourceCulture);
+                object obj = ResourceManager.GetObject("sun", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

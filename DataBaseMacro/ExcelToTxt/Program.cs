@@ -1,29 +1,43 @@
-﻿using System;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WeatherAppNew;
 
 namespace ExcelToTxt {
     class Program {
         static void Main(string[] args) {
 
-            string file = @"C:\Users\infosys\Documents\SampleTest.txt";
+            var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture) {
+                HasHeaderRecord = false,
+                Comment = '#',
+                AllowComments = true,
+                Delimiter = ",",
+            };
+            using (var reader = new StreamReader(@"C:\Users\infosys\Documents\areacode.csv",Encoding.GetEncoding("Shift_JIS")))
+            using (var csv = new CsvReader(reader, csvConfig)) {
 
-            if (File.Exists(file)) {
-                // Store each line in array of strings
-                string[] lines = File.ReadAllLines(file);
-                IEnumerable<string> enum_strings = new List<string>() { lines[0] };
-                string joined_enum = string.Join(",''", enum_strings);
-                Console.WriteLine(joined_enum);
+                var records = csv.GetRecords<AreaCode>().ToList();
+                var area = Console.ReadLine();
+
+                foreach (var item in records) {
+                    if (item.area == area) {
+                        Console.WriteLine(item.code);
+                    }
+                }
+                //while (csv.Read()) {
+                //    var area = csv.GetField(0);
+                //    var code = csv.GetField(1);
+
+                //    Console.WriteLine($"{area} {code}");
+                //}
             }
 
-
-            //IEnumerable<string> enum_strings = new List<string>() { lines};
-            //string joined_enum = string.Join(",''", enum_strings);
-            //Console.WriteLine(joined_enum);
-        
         }
     }
 }

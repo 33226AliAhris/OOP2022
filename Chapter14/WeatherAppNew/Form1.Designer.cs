@@ -1,5 +1,5 @@
 ﻿
-namespace WeatherApp {
+namespace WeatherAppNew {
     partial class Form1 {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -26,15 +26,18 @@ namespace WeatherApp {
         private void InitializeComponent() {
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbCode = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pbTest = new System.Windows.Forms.PictureBox();
+            this.lbWeather = new System.Windows.Forms.Label();
+            this.lbTemp = new System.Windows.Forms.Label();
+            this.pbWeatherImage = new System.Windows.Forms.PictureBox();
             this.tbWeatherInfo = new System.Windows.Forms.TextBox();
             this.tbArea = new System.Windows.Forms.TextBox();
+            this.btSearchArea = new System.Windows.Forms.Button();
             this.btTest = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btCelcius = new System.Windows.Forms.Button();
+            this.btFahrenheit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -43,48 +46,46 @@ namespace WeatherApp {
             this.label7 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.lbWeather = new System.Windows.Forms.Label();
-            this.btSearchArea = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWeatherImage)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,10 +100,11 @@ namespace WeatherApp {
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.tbCode);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.lbWeather);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.pbTest);
+            this.panel1.Controls.Add(this.lbTemp);
+            this.panel1.Controls.Add(this.pbWeatherImage);
             this.panel1.Controls.Add(this.tbWeatherInfo);
             this.panel1.Controls.Add(this.tbArea);
             this.panel1.Controls.Add(this.btSearchArea);
@@ -110,6 +112,13 @@ namespace WeatherApp {
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(249, 718);
             this.panel1.TabIndex = 5;
+            // 
+            // tbCode
+            // 
+            this.tbCode.Location = new System.Drawing.Point(17, 67);
+            this.tbCode.Name = "tbCode";
+            this.tbCode.Size = new System.Drawing.Size(141, 19);
+            this.tbCode.TabIndex = 7;
             // 
             // label4
             // 
@@ -121,25 +130,35 @@ namespace WeatherApp {
             this.label4.TabIndex = 6;
             this.label4.Text = "月曜日, 14:00";
             // 
-            // label2
+            // lbWeather
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(75, 421);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 35);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "18℃";
+            this.lbWeather.AutoSize = true;
+            this.lbWeather.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbWeather.Location = new System.Drawing.Point(80, 138);
+            this.lbWeather.Name = "lbWeather";
+            this.lbWeather.Size = new System.Drawing.Size(81, 35);
+            this.lbWeather.TabIndex = 5;
+            this.lbWeather.Text = "晴れ";
             // 
-            // pbTest
+            // lbTemp
             // 
-            this.pbTest.Image = global::WeatherApp.Properties.Resources._1810;
-            this.pbTest.Location = new System.Drawing.Point(30, 204);
-            this.pbTest.Name = "pbTest";
-            this.pbTest.Size = new System.Drawing.Size(183, 184);
-            this.pbTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbTest.TabIndex = 2;
-            this.pbTest.TabStop = false;
+            this.lbTemp.AutoSize = true;
+            this.lbTemp.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbTemp.Location = new System.Drawing.Point(75, 421);
+            this.lbTemp.Name = "lbTemp";
+            this.lbTemp.Size = new System.Drawing.Size(86, 35);
+            this.lbTemp.TabIndex = 5;
+            this.lbTemp.Text = "18℃";
+            // 
+            // pbWeatherImage
+            // 
+            this.pbWeatherImage.Image = global::WeatherAppNew.Properties.Resources.sun;
+            this.pbWeatherImage.Location = new System.Drawing.Point(30, 204);
+            this.pbWeatherImage.Name = "pbWeatherImage";
+            this.pbWeatherImage.Size = new System.Drawing.Size(183, 184);
+            this.pbWeatherImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbWeatherImage.TabIndex = 2;
+            this.pbWeatherImage.TabStop = false;
             // 
             // tbWeatherInfo
             // 
@@ -160,6 +179,17 @@ namespace WeatherApp {
             this.tbArea.Size = new System.Drawing.Size(142, 35);
             this.tbArea.TabIndex = 0;
             // 
+            // btSearchArea
+            // 
+            this.btSearchArea.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btSearchArea.Location = new System.Drawing.Point(171, 14);
+            this.btSearchArea.Name = "btSearchArea";
+            this.btSearchArea.Size = new System.Drawing.Size(64, 34);
+            this.btSearchArea.TabIndex = 6;
+            this.btSearchArea.Text = "検索";
+            this.btSearchArea.UseVisualStyleBackColor = true;
+            this.btSearchArea.Click += new System.EventHandler(this.btSearchArea_Click);
+            // 
             // btTest
             // 
             this.btTest.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -169,7 +199,6 @@ namespace WeatherApp {
             this.btTest.TabIndex = 6;
             this.btTest.Text = "今日";
             this.btTest.UseVisualStyleBackColor = true;
-            this.btTest.Click += new System.EventHandler(this.btTest_Click);
             // 
             // button2
             // 
@@ -181,25 +210,27 @@ namespace WeatherApp {
             this.button2.Text = "週間";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btCelcius
             // 
-            this.button3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button3.Location = new System.Drawing.Point(907, 8);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(64, 34);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "℃";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btCelcius.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btCelcius.Location = new System.Drawing.Point(907, 8);
+            this.btCelcius.Name = "btCelcius";
+            this.btCelcius.Size = new System.Drawing.Size(64, 34);
+            this.btCelcius.TabIndex = 6;
+            this.btCelcius.Text = "℃";
+            this.btCelcius.UseVisualStyleBackColor = true;
+            this.btCelcius.Click += new System.EventHandler(this.btCelcius_Click);
             // 
-            // button4
+            // btFahrenheit
             // 
-            this.button4.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button4.Location = new System.Drawing.Point(977, 9);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(64, 34);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "℉";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btFahrenheit.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btFahrenheit.Location = new System.Drawing.Point(977, 9);
+            this.btFahrenheit.Name = "btFahrenheit";
+            this.btFahrenheit.Size = new System.Drawing.Size(64, 34);
+            this.btFahrenheit.TabIndex = 6;
+            this.btFahrenheit.Text = "℉";
+            this.btFahrenheit.UseVisualStyleBackColor = true;
+            this.btFahrenheit.Click += new System.EventHandler(this.btFahrenheit_Click);
             // 
             // panel2
             // 
@@ -216,7 +247,6 @@ namespace WeatherApp {
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = global::WeatherApp.Properties.Resources.スクリーンショット_2022_11_14_143113;
             this.pictureBox5.Location = new System.Drawing.Point(24, 36);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(47, 44);
@@ -282,6 +312,15 @@ namespace WeatherApp {
             this.panel3.Size = new System.Drawing.Size(95, 115);
             this.panel3.TabIndex = 11;
             // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Location = new System.Drawing.Point(22, 36);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox12.TabIndex = 22;
+            this.pictureBox12.TabStop = false;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -322,6 +361,15 @@ namespace WeatherApp {
             this.panel4.Size = new System.Drawing.Size(95, 115);
             this.panel4.TabIndex = 13;
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Location = new System.Drawing.Point(24, 35);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 25;
+            this.pictureBox7.TabStop = false;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -341,6 +389,15 @@ namespace WeatherApp {
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(95, 115);
             this.panel5.TabIndex = 12;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Location = new System.Drawing.Point(24, 35);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 24;
+            this.pictureBox6.TabStop = false;
             // 
             // label9
             // 
@@ -362,6 +419,15 @@ namespace WeatherApp {
             this.panel6.Size = new System.Drawing.Size(95, 115);
             this.panel6.TabIndex = 15;
             // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Location = new System.Drawing.Point(24, 35);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 27;
+            this.pictureBox9.TabStop = false;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -382,6 +448,15 @@ namespace WeatherApp {
             this.panel7.Size = new System.Drawing.Size(95, 115);
             this.panel7.TabIndex = 14;
             // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Location = new System.Drawing.Point(24, 35);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 26;
+            this.pictureBox8.TabStop = false;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -401,6 +476,15 @@ namespace WeatherApp {
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(95, 115);
             this.panel10.TabIndex = 16;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Location = new System.Drawing.Point(24, 35);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 28;
+            this.pictureBox10.TabStop = false;
             // 
             // label13
             // 
@@ -452,92 +536,11 @@ namespace WeatherApp {
             this.panel14.Size = new System.Drawing.Size(224, 184);
             this.panel14.TabIndex = 19;
             // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Image = global::WeatherApp.Properties.Resources.スクリーンショット_2022_11_14_143113;
-            this.pictureBox12.Location = new System.Drawing.Point(22, 36);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(47, 44);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox12.TabIndex = 22;
-            this.pictureBox12.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::WeatherApp.Properties.Resources.スクリーンショット_2022_11_14_143113;
-            this.pictureBox6.Location = new System.Drawing.Point(24, 35);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(47, 44);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 24;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::WeatherApp.Properties.Resources.スクリーンショット_2022_11_14_143113;
-            this.pictureBox7.Location = new System.Drawing.Point(24, 35);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(47, 44);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 25;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::WeatherApp.Properties.Resources.スクリーンショット_2022_11_14_143113;
-            this.pictureBox8.Location = new System.Drawing.Point(24, 35);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(47, 44);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 26;
-            this.pictureBox8.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = global::WeatherApp.Properties.Resources.スクリーンショット_2022_11_14_143113;
-            this.pictureBox9.Location = new System.Drawing.Point(24, 35);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(47, 44);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 27;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.Image = global::WeatherApp.Properties.Resources.スクリーンショット_2022_11_14_143113;
-            this.pictureBox10.Location = new System.Drawing.Point(24, 35);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(47, 44);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox10.TabIndex = 28;
-            this.pictureBox10.TabStop = false;
-            // 
-            // lbWeather
-            // 
-            this.lbWeather.AutoSize = true;
-            this.lbWeather.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbWeather.Location = new System.Drawing.Point(80, 138);
-            this.lbWeather.Name = "lbWeather";
-            this.lbWeather.Size = new System.Drawing.Size(81, 35);
-            this.lbWeather.TabIndex = 5;
-            this.lbWeather.Text = "晴れ";
-            // 
-            // btSearchArea
-            // 
-            this.btSearchArea.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btSearchArea.Location = new System.Drawing.Point(171, 14);
-            this.btSearchArea.Name = "btSearchArea";
-            this.btSearchArea.Size = new System.Drawing.Size(64, 34);
-            this.btSearchArea.TabIndex = 6;
-            this.btSearchArea.Text = "検索";
-            this.btSearchArea.UseVisualStyleBackColor = true;
-            this.btSearchArea.Click += new System.EventHandler(this.btSearchArea_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::WeatherApp.Properties.Resources.DD_Blue_Sky_Background_40123_Preview;
+            this.BackgroundImage = global::WeatherAppNew.Properties.Resources.DD_Blue_Sky_Background_40123_Preview;
             this.ClientSize = new System.Drawing.Size(1056, 712);
             this.Controls.Add(this.panel12);
             this.Controls.Add(this.panel13);
@@ -553,37 +556,38 @@ namespace WeatherApp {
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btFahrenheit);
+            this.Controls.Add(this.btCelcius);
             this.Controls.Add(this.btTest);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
             this.Name = "Form1";
             this.Text = "天気予報";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWeatherImage)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -594,14 +598,14 @@ namespace WeatherApp {
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pbTest;
+        private System.Windows.Forms.Label lbTemp;
+        private System.Windows.Forms.PictureBox pbWeatherImage;
         private System.Windows.Forms.TextBox tbArea;
         private System.Windows.Forms.Button btTest;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox tbWeatherInfo;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btCelcius;
+        private System.Windows.Forms.Button btFahrenheit;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel9;
@@ -636,6 +640,7 @@ namespace WeatherApp {
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Label lbWeather;
         private System.Windows.Forms.Button btSearchArea;
+        private System.Windows.Forms.TextBox tbCode;
     }
 }
 
