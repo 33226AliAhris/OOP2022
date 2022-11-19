@@ -9,9 +9,9 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WeatherAppNew {
+namespace WeatherAppNew { 
     public partial class Form1 : Form {
-        int areaCode = 0;
+        //int areaCode = 0;
 
         public Form1() {
             InitializeComponent();
@@ -28,12 +28,37 @@ namespace WeatherAppNew {
         }
 
         //地域検索
-        private void btSearchArea_Click(object sender, EventArgs e) {
-           GetAreaCode();
+        private void btSearchArea_Click(object sender, EventArgs e)
+        {
+            GetAreaCode();
+            SetWeatherDetails();
+        }
+
+        public void SetWeatherDetails()
+        {
+            tbDetails.Text = GetJsonData().description.bodyText;
+            tbNight.Text = GetJsonData().forecasts[0].chanceOfRain.T00_06;
+            tbMorning.Text = GetJsonData().forecasts[0].chanceOfRain.T06_12;
+            tbAfternoon.Text = GetJsonData().forecasts[0].chanceOfRain.T12_18;
+            tbEvening.Text = GetJsonData().forecasts[0].chanceOfRain.T18_24;
+            tbPublishingOffice.Text = GetJsonData().publishingOffice;
+            tbWindDirection.Text = GetJsonData().forecasts[0].detail.wind;
+            tbWeather.Text = GetJsonData().forecasts[0].telop;
+            //pbWeatherImage.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/100.png";
+            pbWeatherImage.ImageLocation = @"C:\Users\Buddy\Pictures\weather-gif-9.gif";
+            lbTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
+            tbAreaName.Text = GetJsonData().location.area;
+            tbPref.Text = GetJsonData().location.prefecture;
+            tbCity.Text = GetJsonData().location.city;
+            lbDay.Text = DateTime.Now.ToString("dddd");
+            lbTime.Text = DateTime.Now.ToShortTimeString();
+            lbDate.Text = DateTime.Now.ToString("yyyy年MM月dd日");
+            tbMaxTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
+            tbMinTemp.Text = GetJsonData().forecasts[0].temperature.min.celsius + "℃";
         }
 
         //地域コード取得
-        private void GetAreaCode() {
+        public int GetAreaCode() {
             //CSVファイルコンフィグレーション
             var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture) {
                 HasHeaderRecord = false,
@@ -43,24 +68,18 @@ namespace WeatherAppNew {
             };
 
             //CSVファイルからデータを読み込み
-            using (var reader = new StreamReader(@"C:\Users\infosys\Documents\areacode.csv", Encoding.GetEncoding("Shift_JIS")))
+            using (var reader = new StreamReader(@"C:\Users\Buddy\Downloads\areacode.csv"))
             using (var csv = new CsvReader(reader, csvConfig)) {
 
                 var records = csv.GetRecords<AreaCode>().ToList();
                 var area = tbArea.Text;
-
+                int areaCode = 0;
                 foreach (var item in records) {
                     if (item.area == area) {
                         areaCode = item.code;  
-                    }
+                    }             
                 }
-                
-                lbWeather.Text = GetJsonData().forecasts[0].telop;
-                pbWeatherImage.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/100.png";
-                lbTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
-                tbWeatherInfo.Text = GetJsonData().location.prefecture + "," + GetJsonData().location.city;
-                lbDay.Text = DateTime.Now.ToString("dddd");
-                lbTime.Text = DateTime.Now.ToShortTimeString();
+                return areaCode;
             }
         }
 
@@ -80,7 +99,7 @@ namespace WeatherAppNew {
             var wc = new WebClient() {
                 Encoding = Encoding.UTF8
             };
-            var dString = wc.DownloadString(@"https://weather.tsukumijima.net/api/forecast?city=" + areaCode);
+            var dString = wc.DownloadString(@"https://weather.tsukumijima.net/api/forecast?city=" + GetAreaCode());
             var json = JsonConvert.DeserializeObject<Rootobject>(dString);
             return json;
         }
@@ -88,7 +107,7 @@ namespace WeatherAppNew {
         //Enterキー押されたら検索
         private void tbArea_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
-                GetAreaCode();
+                SetWeatherDetails();
             }    
         }
 
@@ -109,7 +128,7 @@ namespace WeatherAppNew {
 
                 var records = csv.GetRecords<WeatherImages>().ToList();
                 foreach (var item in records) {
-                    if (item.weather == lbWeather.Text) {
+                    if (item.weather == tbWeather.Text) {
                         pbWeatherImage.ImageLocation = item.path;
                     }
                 }
@@ -137,6 +156,9 @@ namespace WeatherAppNew {
 
             pbDay1.ImageLocation = GetJsonData().forecasts[1].image.url.Replace("svg", "png");
             pbDay2.ImageLocation = GetJsonData().forecasts[2].image.url.Replace("svg", "png");
+
+            lbDateDay1.Text = today.AddDays(1).ToString("dd") + "日";
+            lbDateDay2.Text = today.AddDays(2).ToString("dd") + "日";
         }
 
         private void btWeek_Click(object sender, EventArgs e) {
@@ -157,6 +179,19 @@ namespace WeatherAppNew {
             lbDay5.Text = today.AddDays(5).ToString("dddd");
             lbDay6.Text = today.AddDays(6).ToString("dddd");
             lbDay7.Text = today.AddDays(7).ToString("dddd");
+
+            lbDateDay1.Text = today.AddDays(1).ToString("dd") + "日";
+            lbDateDay2.Text = today.AddDays(2).ToString("dd") + "日";
+            lbDateDay3.Text = today.AddDays(3).ToString("dd") + "日";
+            lbDateDay4.Text = today.AddDays(4).ToString("dd") + "日";
+            lbDateDay5.Text = today.AddDays(5).ToString("dd") + "日";
+            lbDateDay6.Text = today.AddDays(6).ToString("dd") + "日";
+            lbDateDay7.Text = today.AddDays(7).ToString("dd") + "日";
+
+        }
+
+        private void lbMinDay4_Click(object sender, EventArgs e)
+        {
 
         }
     }
