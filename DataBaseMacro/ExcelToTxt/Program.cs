@@ -11,33 +11,34 @@ using WeatherAppNew;
 
 namespace ExcelToTxt {
     class Program {
-        static void Main(string[] args) {
-
-            var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture) {
+        static void Main(string[] args)
+        {
+            var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
+            {
                 HasHeaderRecord = false,
                 Comment = '#',
                 AllowComments = true,
                 Delimiter = ",",
+
             };
-            using (var reader = new StreamReader(@"C:\Users\infosys\Documents\areacode.csv",Encoding.GetEncoding("Shift_JIS")))
-            using (var csv = new CsvReader(reader, csvConfig)) {
 
-                var records = csv.GetRecords<AreaCode>().ToList();
-                var area = Console.ReadLine();
+            //CSVファイルからデータを読み込み
+            using (var reader = new StreamReader(@"C:\Users\Buddy\Downloads\riseandset.csv", Encoding.GetEncoding("Shift_JIS")))
+            using (var csv = new CsvReader(reader, csvConfig))
+            {
 
-                foreach (var item in records) {
-                    if (item.area == area) {
-                        Console.WriteLine(item.code);
+                var records = csv.GetRecords<RiseAndSet>().ToList();
+                var area = "沖縄県";
+                double latitude = 0;
+                foreach (var item in records)
+                {
+                    if (item.area == area)
+                    {
+                        latitude = item.lat;
+                        Console.WriteLine(latitude);
                     }
                 }
-                //while (csv.Read()) {
-                //    var area = csv.GetField(0);
-                //    var code = csv.GetField(1);
-
-                //    Console.WriteLine($"{area} {code}");
-                //}
             }
-
         }
     }
 }

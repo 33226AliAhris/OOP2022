@@ -71,6 +71,7 @@
     <Compile Include="AreaCode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RiseAndSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
