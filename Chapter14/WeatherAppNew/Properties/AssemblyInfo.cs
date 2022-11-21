@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更します。
-[assembly: AssemblyTitle("WeatherAppNew")]
+[assembly: AssemblyTitle("WeatherApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WeatherAppNew")]
+[assembly: AssemblyProduct("WeatherApp")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // このプロジェクトが COM に公開される場合、次の GUID が typelib の ID になります
-[assembly: Guid("9845209d-9263-4440-9c5a-cb73125734d2")]
+[assembly: Guid("39b0fcfb-c66a-4ade-8cab-8c41091ebdfc")]
 
 // アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
 //
