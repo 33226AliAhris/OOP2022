@@ -27,6 +27,7 @@ namespace WeatherAppNew {
             this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbPrefs = new System.Windows.Forms.ComboBox();
             this.tbCity = new System.Windows.Forms.TextBox();
             this.tbPref = new System.Windows.Forms.TextBox();
             this.tbPublishingOffice = new System.Windows.Forms.TextBox();
@@ -126,6 +127,7 @@ namespace WeatherAppNew {
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.cbPrefs);
             this.panel1.Controls.Add(this.tbCity);
             this.panel1.Controls.Add(this.tbPref);
             this.panel1.Controls.Add(this.tbPublishingOffice);
@@ -145,6 +147,65 @@ namespace WeatherAppNew {
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(249, 718);
             this.panel1.TabIndex = 5;
+            // 
+            // cbPrefs
+            // 
+            this.cbPrefs.Font = new System.Drawing.Font("UD デジタル 教科書体 NK-B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbPrefs.FormattingEnabled = true;
+            this.cbPrefs.Items.AddRange(new object[] {
+            "北海道",
+            "青森県",
+            "岩手県",
+            "宮城県",
+            "秋田県",
+            "山形県",
+            "福島県",
+            "茨城県",
+            "栃木県",
+            "群馬県",
+            "埼玉県",
+            "千葉県",
+            "東京都",
+            "神奈川県",
+            "新潟県",
+            "富山県",
+            "石川県",
+            "福井県",
+            "山梨県",
+            "長野県",
+            "岐阜県",
+            "静岡県",
+            "愛知県",
+            "三重県",
+            "滋賀県",
+            "京都府",
+            "大阪府",
+            "兵庫県",
+            "奈良県",
+            "和歌山県",
+            "鳥取県",
+            "島根県",
+            "岡山県",
+            "広島県",
+            "山口県",
+            "徳島県",
+            "香川県",
+            "愛媛県",
+            "高知県",
+            "福岡県",
+            "佐賀県",
+            "長崎県",
+            "熊本県",
+            "大分県",
+            "宮崎県",
+            "鹿児島県",
+            "沖縄県"});
+            this.cbPrefs.Location = new System.Drawing.Point(22, 59);
+            this.cbPrefs.Name = "cbPrefs";
+            this.cbPrefs.Size = new System.Drawing.Size(151, 26);
+            this.cbPrefs.TabIndex = 9;
+            this.cbPrefs.Text = "地域一覧から選択";
+            this.cbPrefs.SelectedIndexChanged += new System.EventHandler(this.cbPrefs_SelectedIndexChanged);
             // 
             // tbCity
             // 
@@ -227,30 +288,30 @@ namespace WeatherAppNew {
             // lbTime
             // 
             this.lbTime.AutoSize = true;
-            this.lbTime.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbTime.Location = new System.Drawing.Point(130, 410);
+            this.lbTime.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbTime.Location = new System.Drawing.Point(140, 397);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(53, 19);
+            this.lbTime.Size = new System.Drawing.Size(63, 21);
             this.lbTime.TabIndex = 6;
             this.lbTime.Text = "14:00";
             // 
             // lbDate
             // 
             this.lbDate.AutoSize = true;
-            this.lbDate.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbDate.Location = new System.Drawing.Point(58, 441);
+            this.lbDate.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbDate.Location = new System.Drawing.Point(58, 430);
             this.lbDate.Name = "lbDate";
-            this.lbDate.Size = new System.Drawing.Size(132, 19);
+            this.lbDate.Size = new System.Drawing.Size(111, 21);
             this.lbDate.TabIndex = 6;
-            this.lbDate.Text = "      月曜日     ";
+            this.lbDate.Text = "月曜日     ";
             // 
             // lbDay
             // 
             this.lbDay.AutoSize = true;
-            this.lbDay.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbDay.Location = new System.Drawing.Point(58, 410);
+            this.lbDay.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbDay.Location = new System.Drawing.Point(58, 397);
             this.lbDay.Name = "lbDay";
-            this.lbDay.Size = new System.Drawing.Size(66, 19);
+            this.lbDay.Size = new System.Drawing.Size(76, 21);
             this.lbDay.TabIndex = 6;
             this.lbDay.Text = "月曜日";
             // 
@@ -258,7 +319,7 @@ namespace WeatherAppNew {
             // 
             this.lbTemp.AutoSize = true;
             this.lbTemp.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbTemp.Location = new System.Drawing.Point(75, 357);
+            this.lbTemp.Location = new System.Drawing.Point(56, 353);
             this.lbTemp.Name = "lbTemp";
             this.lbTemp.Size = new System.Drawing.Size(86, 35);
             this.lbTemp.TabIndex = 5;
@@ -266,8 +327,7 @@ namespace WeatherAppNew {
             // 
             // pbWeatherImage
             // 
-            this.pbWeatherImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbWeatherImage.Location = new System.Drawing.Point(27, 146);
+            this.pbWeatherImage.Location = new System.Drawing.Point(30, 167);
             this.pbWeatherImage.Name = "pbWeatherImage";
             this.pbWeatherImage.Size = new System.Drawing.Size(183, 184);
             this.pbWeatherImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -278,7 +338,7 @@ namespace WeatherAppNew {
             // 
             this.tbWeather.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbWeather.Font = new System.Drawing.Font("MS UI Gothic", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbWeather.Location = new System.Drawing.Point(14, 84);
+            this.tbWeather.Location = new System.Drawing.Point(13, 129);
             this.tbWeather.Name = "tbWeather";
             this.tbWeather.Size = new System.Drawing.Size(226, 35);
             this.tbWeather.TabIndex = 0;
@@ -293,6 +353,7 @@ namespace WeatherAppNew {
             this.tbArea.Name = "tbArea";
             this.tbArea.Size = new System.Drawing.Size(142, 26);
             this.tbArea.TabIndex = 0;
+            this.tbArea.Text = "県名を入力....";
             this.tbArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbArea_KeyDown);
             // 
             // btSearchArea
@@ -774,6 +835,7 @@ namespace WeatherAppNew {
             // 
             // plRiseAndSet
             // 
+            this.plRiseAndSet.BackColor = System.Drawing.Color.White;
             this.plRiseAndSet.Controls.Add(this.label12);
             this.plRiseAndSet.Controls.Add(this.pictureBox7);
             this.plRiseAndSet.Controls.Add(this.pictureBox6);
@@ -950,7 +1012,6 @@ namespace WeatherAppNew {
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox tbWindDirection;
-        private System.Windows.Forms.TextBox tbWeather;
         private System.Windows.Forms.TextBox tbCity;
         private System.Windows.Forms.TextBox tbPref;
         private System.Windows.Forms.TextBox tbPublishingOffice;
@@ -977,6 +1038,8 @@ namespace WeatherAppNew {
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.TextBox tbWeather;
+        private System.Windows.Forms.ComboBox cbPrefs;
     }
 }
 

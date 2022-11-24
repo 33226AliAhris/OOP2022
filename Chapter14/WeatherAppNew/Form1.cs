@@ -12,24 +12,50 @@ using System.Windows.Forms;
 
 namespace WeatherAppNew { 
     public partial class Form1 : Form {
-        //int areaCode = 0;
 
         public Form1() {
             InitializeComponent();
         }
 
+        public static bool IsConnectedToInternet() {
+            try {
+                using (var client = new WebClient())
+                using (client.OpenRead("http://google.com/generate_204"))
+                    return true;
+            }
+            catch { }
+            return false;
+        }
+
         private void Form1_Load(object sender, EventArgs e) {
-            
-            plOverview.Visible = false;
+            var keepRetrying = true;
+            while (keepRetrying) {
+                if (IsConnectedToInternet()) {
+                    keepRetrying = false;
+                    plOverview.Visible = false;
+                    tbArea.Text = "群馬県";
+                    SetWeatherDetails();
+                }
+                else {
+                    keepRetrying = true;
+                    MessageBox.Show("インターネットに接続されていません！接続してからもう一度実行してください。");
+                    Application.Exit();
+                }
+            }
         }
 
         //地域検索
         private void btSearchArea_Click(object sender, EventArgs e)
         {
-            GetAreaCode();
-            SetWeatherDetails();
+            if (String.IsNullOrWhiteSpace(tbArea.Text)) {
+                MessageBox.Show("都道府県名を入力してください！", "エラー");
+                return;
+            }
+            cbPrefs.SelectedItem = tbArea.Text;
+            SetWeatherDetails();           
         }
 
+        //全ての天気情報を設定
         public void SetWeatherDetails()
         {
             tbDetails.Text = GetJsonData().description.bodyText;
@@ -40,8 +66,7 @@ namespace WeatherAppNew {
             tbPublishingOffice.Text = GetJsonData().publishingOffice;
             tbWindDirection.Text = GetJsonData().forecasts[0].detail.wind;
             tbWeather.Text = GetJsonData().forecasts[0].telop;
-            //pbWeatherImage.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/100.png";
-            pbWeatherImage.ImageLocation = @"C:\Users\infosys\Downloads\100.png";
+            SetWeatherIcons();
             lbTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
             tbAreaName.Text = GetJsonData().location.area;
             tbPref.Text = GetJsonData().location.prefecture;
@@ -51,8 +76,7 @@ namespace WeatherAppNew {
             lbDate.Text = DateTime.Now.ToString("yyyy年MM月dd日");
             tbMaxTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
             tbMinTemp.Text = GetJsonData().forecasts[0].temperature.min.celsius + "℃";
-            GetRiseAndSetTime();
-            
+            GetRiseAndSetTime();       
         }
 
         //地域コード取得
@@ -65,9 +89,9 @@ namespace WeatherAppNew {
                 Delimiter = ",",
             };
             int areaCode = 0;
-            try {
+
                 //CSVファイルからデータを読み込み
-                using (var reader = new StreamReader(@"C:\Users\infosys\Documents\areacode.csv"))
+                using (var reader = new StreamReader(@"..\\..\\areacode.csv"))
                 using (var csv = new CsvReader(reader, csvConfig)) {
 
                     var records = csv.GetRecords<AreaCode>().ToList();
@@ -78,15 +102,11 @@ namespace WeatherAppNew {
                             areaCode = item.areaCode;
                         }
                     }  
-                }     
-            }
-            catch (Exception) {
-                MessageBox.Show("ww");
-            }
+                }      
             return areaCode;
         }
 
-        //地域コード取得
+        //都道府県コード取得
         public int GetPrefCode()
         {
             //CSVファイルコンフィグレーション
@@ -99,7 +119,7 @@ namespace WeatherAppNew {
             };
 
             //CSVファイルからデータを読み込み
-            using (var reader = new StreamReader(@"C:\Users\infosys\Documents\areacode.csv"))
+            using (var reader = new StreamReader(@"..\\..\\areacode.csv"))
             using (var csv = new CsvReader(reader, csvConfig))
             {
 
@@ -131,7 +151,7 @@ namespace WeatherAppNew {
             };
 
             //CSVファイルからデータを読み込み
-            using (var reader = new StreamReader(@"C:\Users\infosys\Documents\riseandset.csv"))
+            using (var reader = new StreamReader(@"..\\..\\riseandset.csv"))
             using (var csv = new CsvReader(reader, csvConfig))
             {
 
@@ -162,7 +182,7 @@ namespace WeatherAppNew {
             };
 
             //CSVファイルからデータを読み込み
-            using (var reader = new StreamReader(@"C:\Users\infosys\Documents\riseandset.csv"))
+            using (var reader = new StreamReader(@"..\\..\\riseandset.csv"))
             using (var csv = new CsvReader(reader, csvConfig))
             {
 
@@ -182,13 +202,20 @@ namespace WeatherAppNew {
 
         //摂氏取得
         private void btCelcius_Click(object sender, EventArgs e) {
+            if (String.IsNullOrWhiteSpace(tbArea.Text)) {
+                MessageBox.Show("都道府県名を入力してください！","エラー");
+                return;
+            }
             lbTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
         }
 
         //華氏取得
         private void btFahrenheit_Click(object sender, EventArgs e) {
-            lbTemp.Text = GetJsonData().forecasts[0].temperature.max.fahrenheit + "℉";
-            
+            if (String.IsNullOrWhiteSpace(tbArea.Text)) {
+                MessageBox.Show("都道府県名を入力してください！", "エラー");
+                return;
+            }
+            lbTemp.Text = GetJsonData().forecasts[0].temperature.max.fahrenheit + "℉";           
         }
 
         //ブラウザからJsonデータを取得
@@ -198,17 +225,28 @@ namespace WeatherAppNew {
             };
             var dString = wc.DownloadString(@"https://weather.tsukumijima.net/api/forecast?city=" + GetAreaCode());
             var json = JsonConvert.DeserializeObject<Rootobject>(dString);
-            return json;
+            return json;           
         }
 
         //Enterキー押されたら検索
         private void tbArea_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
+                if (String.IsNullOrWhiteSpace(tbArea.Text)) {
+                    MessageBox.Show("都道府県名を入力してください！", "エラー");
+                    return;
+                }
+                cbPrefs.SelectedItem = tbArea.Text;
                 SetWeatherDetails();
             }    
         }
 
+        //3日間の天気情報取得
         private void btThreeDays_Click(object sender, EventArgs e) {
+            if (String.IsNullOrWhiteSpace(tbArea.Text)) {
+                MessageBox.Show("都道府県名を入力してください！", "エラー");
+                return;
+            }
+
             var today = DateTime.Today;
 
             plOverview.Visible = false;
@@ -232,7 +270,12 @@ namespace WeatherAppNew {
             lbDateDay2.Text = today.AddDays(2).ToString("dd") + "日";
         }
 
+        //週間の天気情報取得
         private void btWeek_Click(object sender, EventArgs e) {
+            if (String.IsNullOrWhiteSpace(tbArea.Text)) {
+                MessageBox.Show("都道府県名を入力してください！", "エラー");
+                return;
+            }
             plOverview.Visible = true;
             plRiseAndSet.Visible = false;
             plDay1.Visible = false;
@@ -254,6 +297,7 @@ namespace WeatherAppNew {
             }
         }
 
+        //日の出、日の入りのデータ取得
         public void GetRiseAndSetTime()
         {
             var year = DateTime.Now.ToString("yyyy");
@@ -272,6 +316,36 @@ namespace WeatherAppNew {
 
             tbRise.Text = json.rise_and_set.sunrise_hm;
             tbSet.Text = json.rise_and_set.sunset_hm;
+        }
+
+        //天気アイコンの設定
+        public void SetWeatherIcons() {
+            //CSVファイルコンフィグレーション
+            var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture) {
+                HasHeaderRecord = false,
+                Comment = '#',
+                AllowComments = true,
+                Delimiter = ",",
+                MissingFieldFound = null,
+            };
+
+            //CSVファイルからデータを読み込み
+            using (var reader = new StreamReader(@"..\\..\\weatherImages.csv"))
+            using (var csv = new CsvReader(reader, csvConfig)) {
+
+                var records = csv.GetRecords<WeatherIconCode>().ToList();
+                var weather = GetJsonData().forecasts[0].telop;
+                foreach (var item in records) {
+                    if (item.weather == weather) {
+                        pbWeatherImage.ImageLocation = @"..\\..\\WeatherImages\" + item.weatherCode+".png";
+                    }
+                }
+            }
+        }
+
+        private void cbPrefs_SelectedIndexChanged(object sender, EventArgs e) {
+            tbArea.Text = cbPrefs.SelectedItem.ToString();
+            SetWeatherDetails();
         }
     }
 }
