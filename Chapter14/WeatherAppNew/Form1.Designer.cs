@@ -27,7 +27,6 @@ namespace WeatherAppNew {
             this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbPrefs = new System.Windows.Forms.ComboBox();
             this.tbCity = new System.Windows.Forms.TextBox();
             this.tbPref = new System.Windows.Forms.TextBox();
             this.tbPublishingOffice = new System.Windows.Forms.TextBox();
@@ -127,7 +126,6 @@ namespace WeatherAppNew {
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.cbPrefs);
             this.panel1.Controls.Add(this.tbCity);
             this.panel1.Controls.Add(this.tbPref);
             this.panel1.Controls.Add(this.tbPublishingOffice);
@@ -147,65 +145,6 @@ namespace WeatherAppNew {
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(249, 718);
             this.panel1.TabIndex = 5;
-            // 
-            // cbPrefs
-            // 
-            this.cbPrefs.Font = new System.Drawing.Font("UD デジタル 教科書体 NK-B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.cbPrefs.FormattingEnabled = true;
-            this.cbPrefs.Items.AddRange(new object[] {
-            "北海道",
-            "青森県",
-            "岩手県",
-            "宮城県",
-            "秋田県",
-            "山形県",
-            "福島県",
-            "茨城県",
-            "栃木県",
-            "群馬県",
-            "埼玉県",
-            "千葉県",
-            "東京都",
-            "神奈川県",
-            "新潟県",
-            "富山県",
-            "石川県",
-            "福井県",
-            "山梨県",
-            "長野県",
-            "岐阜県",
-            "静岡県",
-            "愛知県",
-            "三重県",
-            "滋賀県",
-            "京都府",
-            "大阪府",
-            "兵庫県",
-            "奈良県",
-            "和歌山県",
-            "鳥取県",
-            "島根県",
-            "岡山県",
-            "広島県",
-            "山口県",
-            "徳島県",
-            "香川県",
-            "愛媛県",
-            "高知県",
-            "福岡県",
-            "佐賀県",
-            "長崎県",
-            "熊本県",
-            "大分県",
-            "宮崎県",
-            "鹿児島県",
-            "沖縄県"});
-            this.cbPrefs.Location = new System.Drawing.Point(22, 59);
-            this.cbPrefs.Name = "cbPrefs";
-            this.cbPrefs.Size = new System.Drawing.Size(151, 26);
-            this.cbPrefs.TabIndex = 9;
-            this.cbPrefs.Text = "地域一覧から選択";
-            this.cbPrefs.SelectedIndexChanged += new System.EventHandler(this.cbPrefs_SelectedIndexChanged);
             // 
             // tbCity
             // 
@@ -1039,7 +978,6 @@ namespace WeatherAppNew {
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.TextBox tbWeather;
-        private System.Windows.Forms.ComboBox cbPrefs;
     }
 }
 
