@@ -98,4 +98,48 @@ namespace WeatherAppNew {
         public int width { get; set; }
         public int height { get; set; }
     }
+
+
+    public class WeekRootobject {
+        public string publishingOffice { get; set; }
+        public DateTime reportDatetime { get; set; }
+        public string headTitle { get; set; }
+        public string text { get; set; }
+    }
+
+
+    public class Rootobject_ {
+        public Date date { get; set; }
+        public Location location { get; set; }
+        public float moon_age { get; set; }
+        public Rise_And_Set rise_and_set { get; set; }
+        public string version { get; set; }
+    }
+
+    public class Date {
+        public string day { get; set; }
+        public string month { get; set; }
+        public string year { get; set; }
+    }
+
+    public class Location_ {
+        public Coordinate coordinate { get; set; }
+    }
+
+    public class Coordinate {
+        public string lat { get; set; }
+        public string lng { get; set; }
+    }
+
+    public class Rise_And_Set {
+        public float moonrise { get; set; }
+        public string moonrise_hm { get; set; }
+        public float moonset { get; set; }
+        public string moonset_hm { get; set; }
+        public float sunrise { get; set; }
+        public string sunrise_hm { get; set; }
+        public float sunset { get; set; }
+        public string sunset_hm { get; set; }
+    }
+
 }

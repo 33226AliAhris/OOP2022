@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WeatherAppNew {
-    public class AreaCode {
-        public string area { get; set; }
-        public int areaCode { get; set; }
-        public int prefCode { get; set; }
+    class WeatherImages {
+        public string weather { get; set; }
+        public int code { get; set; }
     }
 }
