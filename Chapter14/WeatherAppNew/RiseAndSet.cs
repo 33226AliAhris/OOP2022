@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WeatherAppNew {
-    class RiseAndSet {
+    public class RiseAndSet {
         public string area { get; set; }
-        public int lat { get; set; }
-        public int lng { get; set; }
+        public double lat { get; set; }
+        public double lng { get; set; }
     }
 }

@@ -21,14 +21,27 @@ namespace WeatherAppNew {
         private void Form1_Load(object sender, EventArgs e) {
 
             plOverview.Visible = false;
+            tbArea.Text = "群馬県";
+            SetWeatherDetails();
+            SetThreeDaysWeather();
+
         }
 
         //地域検索
         private void btSearchArea_Click(object sender, EventArgs e) {
+            if (String.IsNullOrWhiteSpace(tbArea.Text)) {
+                MessageBox.Show("都道府県名を入力してください！", "エラー");
+                return;
+            }
+            SetThreeDaysWeather();
             SetWeatherDetails();
         }
 
         public void SetWeatherDetails() {
+            if (GetJsonData() == null) {
+                return;
+            }
+
             tbDetails.Text = GetJsonData().description.bodyText;
             tbNight.Text = GetJsonData().forecasts[0].chanceOfRain.T00_06;
             tbMorning.Text = GetJsonData().forecasts[0].chanceOfRain.T06_12;
@@ -37,8 +50,6 @@ namespace WeatherAppNew {
             tbPublishingOffice.Text = GetJsonData().publishingOffice;
             tbWindDirection.Text = GetJsonData().forecasts[0].detail.wind;
             tbWeather.Text = GetJsonData().forecasts[0].telop;
-            //pbWeatherImage.ImageLocation = "https://www.jma.go.jp/bosai/forecast/img/100.png";
-            //pbWeatherImage.ImageLocation = @"C:\Users\Buddy\Pictures\weather-gif-9.gif";
             lbTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
             tbAreaName.Text = GetJsonData().location.area;
             tbPref.Text = GetJsonData().location.prefecture;
@@ -49,6 +60,7 @@ namespace WeatherAppNew {
             tbMaxTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
             tbMinTemp.Text = GetJsonData().forecasts[0].temperature.min.celsius + "℃";
             GetRiseAndSetTime();
+            SetWeatherImage();
 
         }
 
@@ -162,12 +174,15 @@ namespace WeatherAppNew {
         //摂氏取得
         private void btCelcius_Click(object sender, EventArgs e) {
             lbTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
+            tbMaxTemp.Text = GetJsonData().forecasts[0].temperature.max.celsius + "℃";
+            tbMinTemp.Text = GetJsonData().forecasts[0].temperature.min.celsius + "℃";
         }
 
         //華氏取得
         private void btFahrenheit_Click(object sender, EventArgs e) {
             lbTemp.Text = GetJsonData().forecasts[0].temperature.max.fahrenheit + "℉";
-
+            tbMaxTemp.Text = GetJsonData().forecasts[0].temperature.max.fahrenheit + "℉";
+            tbMinTemp.Text = GetJsonData().forecasts[0].temperature.min.fahrenheit + "℉";
         }
 
         //ブラウザからJsonデータを取得
@@ -175,9 +190,17 @@ namespace WeatherAppNew {
             var wc = new WebClient() {
                 Encoding = Encoding.UTF8
             };
-            var dString = wc.DownloadString(@"https://weather.tsukumijima.net/api/forecast?city=" + GetAreaCode());
-            var json = JsonConvert.DeserializeObject<Rootobject>(dString);
-            return json;
+
+            try {
+                var dString = wc.DownloadString(@"https://weather.tsukumijima.net/api/forecast?city=" + GetAreaCode());
+                var json = JsonConvert.DeserializeObject<Rootobject>(dString);
+                return json;
+            }
+            catch (Exception) {
+
+                MessageBox.Show("正しい都道府県名を入力してください！","エラー");
+                return null;
+            }
         }
 
         //Enterキー押されたら検索
@@ -187,31 +210,11 @@ namespace WeatherAppNew {
             }
         }
 
-        public void GetWeatherImages() {
-            //CSVファイルコンフィグレーション
-            var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture) {
-                HasHeaderRecord = false,
-                Comment = '#',
-                AllowComments = true,
-                Delimiter = ",",
-                MissingFieldFound = null,
-                BadDataFound = null,
-            };
-
-            //CSVファイルからデータを読み込み
-            using (var reader = new StreamReader(@"weatherImages.csv", Encoding.GetEncoding("Shift_JIS")))
-            using (var csv = new CsvReader(reader, csvConfig)) {
-
-                var records = csv.GetRecords<WeatherImages>().ToList();
-                foreach (var item in records) {
-                    if (item.weather == tbWeather.Text) {
-                        //pbWeatherImage.ImageLocation = item.path;
-                    }
-                }
-            }
+        private void btThreeDays_Click(object sender, EventArgs e) {
+            SetThreeDaysWeather();
         }
 
-        private void btThreeDays_Click(object sender, EventArgs e) {
+        private void SetThreeDaysWeather() {
             var today = DateTime.Today;
 
             plOverview.Visible = false;
@@ -244,11 +247,18 @@ namespace WeatherAppNew {
             var wc = new WebClient() {
                 Encoding = Encoding.UTF8
             };
-            //string link = @"https://www.jma.go.jp/bosai/forecast/data/overview_week/" + GetPrefCode() + ".json";
-            var dString = wc.DownloadString(@"https://www.jma.go.jp/bosai/forecast/data/overview_week/" + GetPrefCode() + ".json");
-            var json = JsonConvert.DeserializeObject<WeekRootobject>(dString);
+            try {
+                //string link = @"https://www.jma.go.jp/bosai/forecast/data/overview_week/" + GetPrefCode() + ".json";
+                var dString = wc.DownloadString(@"https://www.jma.go.jp/bosai/forecast/data/overview_week/" + GetPrefCode() + ".json");
+                var json = JsonConvert.DeserializeObject<WeekRootobject>(dString);
 
-            tbWeekOverview.Text = json.text;
+                tbWeekOverview.Text = json.text;
+            }
+            catch (Exception) {
+
+                tbWeekOverview.Text = "サーバーエラーのため表示できません！";
+            }
+
         }
 
         public void GetRiseAndSetTime() {
@@ -267,6 +277,31 @@ namespace WeatherAppNew {
 
             tbRise.Text = json.rise_and_set.sunrise_hm;
             tbSet.Text = json.rise_and_set.sunset_hm;
+        }
+
+        //天気画像を設定
+        public void SetWeatherImage() {
+            //CSVファイルコンフィグレーション
+            var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture) {
+                HasHeaderRecord = false,
+                Comment = '#',
+                AllowComments = true,
+                Delimiter = ",",
+                MissingFieldFound = null,
+                BadDataFound = null,
+            };
+
+            //CSVファイルからデータを読み込み
+            using (var reader = new StreamReader(@"weatherImages.csv"))
+            using (var csv = new CsvReader(reader, csvConfig)) {
+                var records = csv.GetRecords<WeatherImages>().ToList();
+                var weather = GetJsonData().forecasts[0].telop;
+                foreach (var item in records) {
+                    if (item.weather == weather) {
+                        pbWeatherImage.ImageLocation = @"Images\" + item.weatherCode + ".png";
+                    }
+                }
+            }
         }
     }
 }

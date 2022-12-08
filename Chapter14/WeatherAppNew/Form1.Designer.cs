@@ -54,15 +54,15 @@ namespace WeatherAppNew {
             this.lbMaxDay1 = new System.Windows.Forms.Label();
             this.lbDay1 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.plOverview = new System.Windows.Forms.Panel();
-            this.tbWeekOverview = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tbMinTemp = new System.Windows.Forms.TextBox();
             this.tbMaxTemp = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.plOverview = new System.Windows.Forms.Panel();
+            this.tbWeekOverview = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.plDay2 = new System.Windows.Forms.Panel();
             this.pbDay2 = new System.Windows.Forms.PictureBox();
             this.lbDateDay2 = new System.Windows.Forms.Label();
@@ -100,9 +100,9 @@ namespace WeatherAppNew {
             ((System.ComponentModel.ISupportInitialize)(this.pbDay1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel9.SuspendLayout();
-            this.plOverview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.plOverview.SuspendLayout();
             this.plDay2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDay2)).BeginInit();
             this.panel8.SuspendLayout();
@@ -300,6 +300,7 @@ namespace WeatherAppNew {
             this.btSearchArea.Name = "btSearchArea";
             this.btSearchArea.Size = new System.Drawing.Size(64, 34);
             this.btSearchArea.TabIndex = 6;
+            this.btSearchArea.Text = "検索";
             this.btSearchArea.UseVisualStyleBackColor = true;
             this.btSearchArea.Click += new System.EventHandler(this.btSearchArea_Click);
             // 
@@ -433,43 +434,11 @@ namespace WeatherAppNew {
             this.panel9.Size = new System.Drawing.Size(249, 184);
             this.panel9.TabIndex = 10;
             // 
-            // plOverview
-            // 
-            this.plOverview.Controls.Add(this.tbWeekOverview);
-            this.plOverview.Controls.Add(this.label11);
-            this.plOverview.Location = new System.Drawing.Point(278, 71);
-            this.plOverview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.plOverview.Name = "plOverview";
-            this.plOverview.Size = new System.Drawing.Size(760, 182);
-            this.plOverview.TabIndex = 21;
-            this.plOverview.Visible = false;
-            // 
-            // tbWeekOverview
-            // 
-            this.tbWeekOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeekOverview.Location = new System.Drawing.Point(3, 27);
-            this.tbWeekOverview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tbWeekOverview.Multiline = true;
-            this.tbWeekOverview.Name = "tbWeekOverview";
-            this.tbWeekOverview.Size = new System.Drawing.Size(756, 151);
-            this.tbWeekOverview.TabIndex = 1;
-            this.tbWeekOverview.Text = "天気";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("UD デジタル 教科書体 NK-B", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label11.Location = new System.Drawing.Point(-1, 4);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(86, 22);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "週間概況";
-            // 
             // pictureBox5
             // 
+            this.pictureBox5.Image = global::WeatherAppNew.Properties.Resources.cold;
             this.pictureBox5.Location = new System.Drawing.Point(5, 104);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(40, 52);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -478,8 +447,9 @@ namespace WeatherAppNew {
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Image = global::WeatherAppNew.Properties.Resources.high_temperature;
             this.pictureBox3.Location = new System.Drawing.Point(5, 18);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(40, 52);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -527,6 +497,40 @@ namespace WeatherAppNew {
             this.label1.Size = new System.Drawing.Size(115, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "最高気温・・・";
+            // 
+            // plOverview
+            // 
+            this.plOverview.Controls.Add(this.tbWeekOverview);
+            this.plOverview.Controls.Add(this.label11);
+            this.plOverview.Location = new System.Drawing.Point(278, 75);
+            this.plOverview.Margin = new System.Windows.Forms.Padding(2);
+            this.plOverview.Name = "plOverview";
+            this.plOverview.Size = new System.Drawing.Size(760, 182);
+            this.plOverview.TabIndex = 21;
+            this.plOverview.Visible = false;
+            // 
+            // tbWeekOverview
+            // 
+            this.tbWeekOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeekOverview.Location = new System.Drawing.Point(3, 27);
+            this.tbWeekOverview.Margin = new System.Windows.Forms.Padding(2);
+            this.tbWeekOverview.Multiline = true;
+            this.tbWeekOverview.Name = "tbWeekOverview";
+            this.tbWeekOverview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbWeekOverview.Size = new System.Drawing.Size(756, 151);
+            this.tbWeekOverview.TabIndex = 1;
+            this.tbWeekOverview.Text = "天気";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("UD デジタル 教科書体 NK-B", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label11.Location = new System.Drawing.Point(-1, 4);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(86, 22);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "週間概況";
             // 
             // plDay2
             // 
@@ -694,6 +698,7 @@ namespace WeatherAppNew {
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::WeatherAppNew.Properties.Resources._53514423f28f1e52863d66b0d3b407ea;
             this.pictureBox1.Location = new System.Drawing.Point(-46, -13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(277, 212);
@@ -713,8 +718,9 @@ namespace WeatherAppNew {
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Image = global::WeatherAppNew.Properties.Resources.wind;
             this.pictureBox2.Location = new System.Drawing.Point(2, 2);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(244, 84);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -736,7 +742,7 @@ namespace WeatherAppNew {
             this.panel2.Controls.Add(this.tbDetails);
             this.panel2.Controls.Add(this.lbOverview);
             this.panel2.Location = new System.Drawing.Point(547, 490);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(494, 210);
             this.panel2.TabIndex = 20;
@@ -745,9 +751,10 @@ namespace WeatherAppNew {
             // 
             this.tbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDetails.Location = new System.Drawing.Point(3, 27);
-            this.tbDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbDetails.Margin = new System.Windows.Forms.Padding(2);
             this.tbDetails.Multiline = true;
             this.tbDetails.Name = "tbDetails";
+            this.tbDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbDetails.Size = new System.Drawing.Size(490, 182);
             this.tbDetails.TabIndex = 1;
             this.tbDetails.Text = "天気";
@@ -765,6 +772,7 @@ namespace WeatherAppNew {
             // 
             // plRiseAndSet
             // 
+            this.plRiseAndSet.BackColor = System.Drawing.Color.White;
             this.plRiseAndSet.Controls.Add(this.label12);
             this.plRiseAndSet.Controls.Add(this.pictureBox7);
             this.plRiseAndSet.Controls.Add(this.pictureBox6);
@@ -772,7 +780,7 @@ namespace WeatherAppNew {
             this.plRiseAndSet.Controls.Add(this.tbRise);
             this.plRiseAndSet.Controls.Add(this.label13);
             this.plRiseAndSet.Location = new System.Drawing.Point(546, 75);
-            this.plRiseAndSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.plRiseAndSet.Margin = new System.Windows.Forms.Padding(2);
             this.plRiseAndSet.Name = "plRiseAndSet";
             this.plRiseAndSet.Size = new System.Drawing.Size(494, 178);
             this.plRiseAndSet.TabIndex = 2;
@@ -789,8 +797,9 @@ namespace WeatherAppNew {
             // 
             // pictureBox7
             // 
+            this.pictureBox7.Image = global::WeatherAppNew.Properties.Resources.sunset;
             this.pictureBox7.Location = new System.Drawing.Point(0, 96);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(124, 80);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -799,8 +808,9 @@ namespace WeatherAppNew {
             // 
             // pictureBox6
             // 
+            this.pictureBox6.Image = global::WeatherAppNew.Properties.Resources.sunrise;
             this.pictureBox6.Location = new System.Drawing.Point(0, 2);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(124, 80);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -811,7 +821,7 @@ namespace WeatherAppNew {
             // 
             this.tbSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSet.Location = new System.Drawing.Point(352, 115);
-            this.tbSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbSet.Margin = new System.Windows.Forms.Padding(2);
             this.tbSet.Name = "tbSet";
             this.tbSet.Size = new System.Drawing.Size(119, 37);
             this.tbSet.TabIndex = 2;
@@ -820,7 +830,7 @@ namespace WeatherAppNew {
             // 
             this.tbRise.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbRise.Location = new System.Drawing.Point(352, 21);
-            this.tbRise.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbRise.Margin = new System.Windows.Forms.Padding(2);
             this.tbRise.Name = "tbRise";
             this.tbRise.Size = new System.Drawing.Size(119, 37);
             this.tbRise.TabIndex = 1;
@@ -844,6 +854,7 @@ namespace WeatherAppNew {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::WeatherAppNew.Properties.Resources.DD_Blue_Sky_Background_40123_Preview1;
             this.ClientSize = new System.Drawing.Size(1051, 708);
             this.Controls.Add(this.plOverview);
             this.Controls.Add(this.panel2);
@@ -859,8 +870,10 @@ namespace WeatherAppNew {
             this.Controls.Add(this.btThreeDays);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "天気予報";
+            this.Text = "天気予報アプリ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbWeatherImage)).EndInit();
@@ -870,10 +883,10 @@ namespace WeatherAppNew {
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.plOverview.ResumeLayout(false);
-            this.plOverview.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.plOverview.ResumeLayout(false);
+            this.plOverview.PerformLayout();
             this.plDay2.ResumeLayout(false);
             this.plDay2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDay2)).EndInit();
