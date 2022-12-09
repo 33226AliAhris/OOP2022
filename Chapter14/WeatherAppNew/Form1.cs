@@ -24,6 +24,7 @@ namespace WeatherAppNew {
             tbArea.Text = "群馬県";
             SetWeatherDetails();
             SetThreeDaysWeather();
+            SetWeatherImage();
 
         }
 
@@ -33,14 +34,16 @@ namespace WeatherAppNew {
                 MessageBox.Show("都道府県名を入力してください！", "エラー");
                 return;
             }
+
+            if (GetJsonData() == null) {
+                return;
+            }
+
             SetThreeDaysWeather();
             SetWeatherDetails();
         }
 
         public void SetWeatherDetails() {
-            if (GetJsonData() == null) {
-                return;
-            }
 
             tbDetails.Text = GetJsonData().description.bodyText;
             tbNight.Text = GetJsonData().forecasts[0].chanceOfRain.T00_06;
@@ -191,8 +194,47 @@ namespace WeatherAppNew {
                 Encoding = Encoding.UTF8
             };
 
+            string code = GetAreaCode().ToString();
+            switch (GetAreaCode()) {
+                case 16010:
+                    code = "0" + code;
+                    break;
+
+                case 20010:
+                    code = "0" + code;
+                    break;
+
+                case 30010:
+                    code = "0" + code;
+                    break;
+
+                case 40010:
+                    code = "0" + code;
+                    break;
+
+                case 50010:
+                    code = "0" + code;
+                    break;
+
+                case 60010:
+                    code = "0" + code;
+                    break;
+
+                case 70010:
+                    code = "0" + code;
+                    break;
+
+                case 80010:
+                    code = "0" + code;
+                    break;
+
+                case 90010:
+                    code = "0" + code;
+                    break;
+            }
+
             try {
-                var dString = wc.DownloadString(@"https://weather.tsukumijima.net/api/forecast?city=" + GetAreaCode());
+                var dString = wc.DownloadString(@"https://weather.tsukumijima.net/api/forecast?city=" + code);
                 var json = JsonConvert.DeserializeObject<Rootobject>(dString);
                 return json;
             }
